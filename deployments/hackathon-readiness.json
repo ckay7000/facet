@@ -1,0 +1,106 @@
+{
+  "project": "Facet",
+  "status": "passed",
+  "checked_at": "2026-11-02T12:15:48.274918+00:00",
+  "public_repository": "https://github.com/NSEVEjk0/facet-near",
+  "reviewed_commit": "8e641685655a0f201993c813cd79f25197a26b25",
+  "review_tag": "hackathon-demo-2026-11-02",
+  "ci": {
+    "url": "https://github.com/NSEVEjk0/facet-near/actions/runs/41442524855",
+    "conclusion": "success",
+    "node_version": "24",
+    "commands": [
+      "npm ci",
+      "npm test",
+      "npm run build"
+    ],
+    "unit_tests": 17
+  },
+  "video": {
+    "url": "https://facet-near.vercel.app/media/facet-demo.mp4",
+    "duration_seconds": 128.8,
+    "width": 1920,
+    "height": 1080,
+    "narrated": true,
+    "burned_in_captions": true,
+    "sha256": "f1be757c3fd7aaac63e20c8a6ebf39db0a2d5acc37a62fd05ad5b024c9272cab",
+    "source": "Edited genuine hosted UI screenshots; fictional inputs"
+  },
+  "live_workflow": {
+    "status": "passed",
+    "checked_at": "2026-11-02T11:48:00.394Z",
+    "evidence": [
+      {
+        "name": "self-recorded document",
+        "token_id": "facet_990487b3835779726367e3fb77417f31",
+        "transaction": {
+          "hash": "7zhWJrkLz9cuj4mnMrhbp9jxyCAskvQMi58ovdnv2GLk",
+          "success": true,
+          "method": "mint_record"
+        }
+      },
+      {
+        "name": "fictional issuer-signed credential",
+        "token_id": "facet_2950b7526362a3b3933ca9050335d3fd",
+        "transaction": {
+          "hash": "HW3UZC8gCep9fgWoKyxfey8wqmeAaRna6ySKAj31xwDy",
+          "success": true,
+          "method": "mint_record"
+        }
+      },
+      {
+        "name": "external verification",
+        "transaction": {
+          "hash": "H3gtNSHp5x4i2ie8kV4LbU6tFrzQy2w5c6FD5Vbx3bFG",
+          "success": true,
+          "method": "record_verification"
+        },
+        "proof_hash": "5790c0b559fc811e3291a1b7f814e4cfc5c72e0fff8fff9eb16d7b927075fd79"
+      },
+      {
+        "name": "live revocation",
+        "transaction": {
+          "hash": "EsTFaPczyzDSNXvakbuZDNXmBZsrYAYCqxGr22PCf5ao",
+          "success": true,
+          "method": "revoke_record"
+        }
+      }
+    ],
+    "browser_errors": []
+  },
+  "playback": {
+    "project": "facet",
+    "status": "passed",
+    "duration": 128.797,
+    "time": 1.040463,
+    "width": 1920,
+    "height": 1080,
+    "source": "https://facet-near.vercel.app/media/facet-demo.mp4",
+    "error": null,
+    "mobile_width": 390,
+    "browser_errors": []
+  },
+  "static_video_delivery": {
+    "status": 206,
+    "content_type": "video/mp4",
+    "range_bytes": 1024
+  },
+  "temporary_capture_service": {
+    "status": "removed",
+    "project": "near-hackathon-capture",
+    "deployments": [
+      "dpl_Bd8qQmBmnHX4HYXDEkmfyPoC3SZa",
+      "dpl_5dJ7MXaWCkcUjW1Gx1rTGmhQohSm",
+      "dpl_4hcve4vUVM71Rhh2EcphDBu81b5d"
+    ],
+    "credential_removed_with_project": true,
+    "checked_at": "2026-11-02T12:14:37.607Z"
+  },
+  "submission": {
+    "submitted": false,
+    "x_post_published": false,
+    "deadline_utc": "2026-11-14T23:59:00Z",
+    "human_steps": "See docs/SUBMISSION_CHECKLIST.md",
+    "independent_other_entry": "Sealwork"
+  }
+}
