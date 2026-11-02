@@ -1,59 +1,51 @@
 # Facet
 
-**Prove a qualification without handing over your entire document.**
+**Prove what matters. Keep the rest private.**
 
-[Try the live app](https://facet-near.vercel.app) · [Watch the narrated demo](https://facet-near.vercel.app/media/facet-demo.mp4) · [Test evidence](deployments/verification.json)
+Facet lets you prove selected facts from a signed credential without handing over your entire document.
 
-A hiring team needs to know whether you completed a course. It does not need your grade, student number, or the original certificate. Facet lets you approve the exact fields it receives, while a verifier checks the issuer’s signature and current credential status.
+[Try the app](https://facet-near.vercel.app) · [Watch the demo](https://facet-near.vercel.app/media/facet-demo.mp4) · [New to this repo? Start here](docs/REPO_GUIDE.md)
 
-The working NEAR testnet prototype combines a password-protected document vault, holder-bound credential NFTs, real BBS selective-disclosure proofs, and single-use verification receipts. You can try the sponsored demo without a blockchain wallet.
+## An example you can try
 
-![Facet’s private credential workspace](docs/images/desktop-home.png)
+You completed a course. A hiring team needs to know **which course** and **whether you completed it**. It does not need your grade, student number or the original certificate.
 
-## A concrete example
+In Facet, you approve those two fields. The hiring team checks the proof in another browser and sees just the approved claims and required public identifiers. Your name and score remain hidden.
 
-| Person or organization | What they do | What the prototype demonstrates |
-| --- | --- | --- |
-| Learner | Prove training completion to a hiring team | Share course and completion; hide name, score and student reference |
-| Document owner | Preserve private training notes | Encrypt the original locally; record a salted fingerprint as a self-recorded NFT |
-| External verifier | Check a proof in a separate browser | Verify approved claims without opening the owner’s vault |
-| Credential owner | Withdraw a credential from future use | Revoke its NEAR record; subsequent verification rejects it |
+The demo learner and **Facet Test Academy** are fictional. The cryptographic signatures and NEAR testnet transactions are real. Real institution onboarding is future work.
 
-**The issuer is fictional Facet Test Academy.** An arbitrary uploaded document stays explicitly **self-recorded and unverified**. Recording an NFT does not establish that a passport, degree or certificate is genuine. Real university, employment and membership integrations are future work. [More use cases and their limits](docs/USE_CASES.md).
+![Facet's private credential workspace](docs/images/desktop-home.png)
 
-## Try it: do this → see this
+## Two features, different meanings
 
-Use fictional files for the public demo. Open [My vault](https://facet-near.vercel.app/vault).
+| Feature | What you get |
+| --- | --- |
+| **Upload a document → Create private NFT** | An encrypted original on your device and a public fingerprint record. It says **Self-recorded · unverified**. Uploading does not prove authenticity |
+| **Issue demo credential → Prove selected fields** | Claims signed by the fictional issuer, with a proof that reveals only the fields you approve |
 
-1. Create a vault password → an encrypted local vault opens. Save an encrypted backup and keep your password.
-2. Upload a small file; choose **Create private NFT** → its original remains local and its record says **Self-recorded · unverified**.
-3. Choose **Issue demo credential** → a fictional training credential receives a real issuer signature and a NEAR NFT.
-4. Choose **Prove selected fields**; create a request for course and completion → the consent preview distinguishes revealed and hidden fields.
-5. Approve and **Export proof** → the proof contains approved claims and required public bindings, without the learner’s name or score.
-6. Open [Verify](https://facet-near.vercel.app/verify) in another browser, import that proof, and click **Verify proof** → signature, holder approval and live credential checks pass; NEAR records a receipt. No vault is required there.
-7. Check the same proof again → its used nonce is rejected. Run the [Proof lab](https://facet-near.vercel.app/lab) → eight real positive and negative checks show the rejection paths.
-8. Create a fresh proof, revoke the credential in the vault, then verify that unused proof → live revocation blocks it.
+The document itself is not exposed inside the NFT. The NFT records ownership and status. [What stays private and what is public](docs/REPO_GUIDE.md#what-is-private-and-what-is-public).
 
-Requests expire: exchange proofs promptly. Backup/restore, idle locking and local consent history are also implemented. [Walkthrough, captions and capture evidence](docs/DEMO.md).
+## Try it in five steps
 
-## What NEAR does
+Use fictional files. No blockchain wallet is needed in the sponsored demo.
 
-The deployed contract is [`credentials.facet-lab-1102.testnet`](deployments/testnet.json). It anchors issuer keys, NFT ownership, expiry and revocation. Its verification receipt consumes a request nonce once, giving separate verifiers a shared current status and replay record.
+1. Open [My vault](https://facet-near.vercel.app/vault), create a password and save an encrypted backup. There is no password reset.
+2. Click **Issue demo credential**. You get the fictional learner's signed training credential.
+3. Click **Prove selected fields** and request course and completion. Read the preview: those fields are shared; name and score are hidden. Approve, then **Export proof**.
+4. Open [Verify](https://facet-near.vercel.app/verify) in another browser. Import the proof and click **Verify proof**. No vault or original certificate is needed there.
+5. Try that proof again: reuse is rejected. The [Proof lab](https://facet-near.vercel.app/lab) also demonstrates tampering, expiry and revocation failures.
 
-BBS cryptography runs in the browser and backend. The contract restricts receipt recording to a designated verification relay and independently checks status and nonce reuse. It does **not** execute BBS verification itself. [Independent verification CLI](scripts/check-proof.ts) and [published verification code](public/proof-code/) let reviewers inspect a proof without trusting the relay’s accepted flag.
+For your own file, upload it in the vault and choose **Create private NFT**. It remains explicitly unverified. [Full walkthrough, including revocation](docs/DEMO.md).
 
-```mermaid
-flowchart LR
-  I[Demo issuer] -->|Signed training claims| V[Encrypted local vault]
-  V -->|Owner-approved selected fields| P[BBS proof]
-  P --> E[External verifier]
-  N[NEAR issuer and NFT status] --> E
-  E -->|Single-use receipt| N
-```
+## Why NEAR is part of the product
 
-## Run and review the code
+NEAR records the issuer's public key, credential ownership, expiry and revocation. A one-use verification receipt helps separate verifiers reject reused requests.
 
-Use **Node 24** and npm. The basic app and tests require no private credentials.
+The selective-disclosure mathematics, called **BBS proofs**, runs in the browser and backend. The smart contract checks live status and request reuse; a designated verification relay records receipts. [Technical design and trust boundaries](docs/ENGINEERING.md) · [Independent proof checker](scripts/check-proof.ts).
+
+## Run or review the code
+
+Use **Node 24** and npm. Tests and the build require no private keys.
 
 ```bash
 git clone https://github.com/NSEVEjk0/facet-near.git
@@ -65,25 +57,15 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open `http://127.0.0.1:5370`. Without relay credentials the local encrypted vault works; chain actions need a configured testnet service. Do not copy the deployed project’s secrets. [Development and test instructions](docs/DEVELOPMENT.md).
+Open `http://127.0.0.1:5370`. The local encrypted vault works without relay credentials; chain actions need your own configured testnet service.
 
-| Location | Responsibility |
-| --- | --- |
-| `src/` | Vault, consent, verification desk and proof lab |
-| `shared/` | BBS proofs, signatures and encrypted-vault format |
-| `server/`, `api/` | Request signing, issuer relay and live verification |
-| `contracts/facet/` | Issuer registry, holder-bound NFTs, revocation and receipts |
-| `tests/`, `scripts/` | Cryptographic tests, independent verifier and deployment tools |
-| `deployments/` | Public contract identities, transactions and release evidence |
-| `docs/` | Examples, architecture, demo and hackathon guide |
+[Repository map and plain-English glossary](docs/REPO_GUIDE.md) · [Development and tests](docs/DEVELOPMENT.md) · [Other use cases](docs/USE_CASES.md) · [Release test evidence](deployments/verification.json).
 
-Release evidence records **17 unit tests, 16 live contract checks and 23 hosted browser checks**. CI repeats credential-free tests and the production build. Live tests are separate and credentialed.
+## Current limits
 
-## Privacy and trust
+Public holder and token IDs, issuer, expiry, revocation and salted fingerprints remain visible. Recipients can keep claims you share. Revocation stops future verification; it cannot erase past disclosures.
 
-Originals, passwords and holder secret keys stay in the encrypted browser vault. Token IDs, holder IDs, issuer IDs, salted fingerprints, expiry, revocation and chain activity are public. Required bindings remain visible in a proof. A verifier can retain fields you share; revocation cannot erase them.
-
-A compromised device, website or verification relay remains a risk. Requester names are self-declared. There is no password reset. This is a testnet prototype with a custom credential schema, not an audited identity service or a full W3C VC interoperability implementation. [Engineering details and trust boundaries](docs/ENGINEERING.md).
+This is a testnet prototype, not an audited identity service. A compromised device, website or relay remains a trust risk. Requester names are self-declared; real issuer onboarding and full W3C credential interoperability are future work. [Detailed limits](docs/ENGINEERING.md).
 
 ## NEAR HACKATHON disclosure
 
