@@ -1,0 +1,242 @@
+{
+  "status": "passed",
+  "prototype": true,
+  "independently_audited": false,
+  "application": "Facet",
+  "url": "https://facet-near.vercel.app",
+  "network": "testnet",
+  "checked_at": "2026-11-02T10:38:44.683Z",
+  "cryptography_and_vault": {
+    "status": "passed",
+    "command": "npm test",
+    "tests": 17,
+    "scope": "BBS selective disclosure, holder and request signatures, tampering, revocation, expiry, encryption and owner approvals"
+  },
+  "contract": {
+    "status": "passed",
+    "network": "testnet",
+    "contract_id": "facet-checks-1102.testnet",
+    "checked_at": "2026-11-02T10:25:19.917Z",
+    "checks": [
+      "Registered issuer mints a holder-bound demo credential",
+      "Identical mint retries preserve the original record",
+      "Mint retries cannot change the holder",
+      "Unregistered accounts cannot mint credentials",
+      "Unregistered accounts cannot revoke credentials",
+      "Public NFT metadata excludes filenames, documents and personal claims",
+      "Transfers and marketplace approvals refuse credential resale",
+      "Only the designated verification relay records checks",
+      "A valid relay result records a publicly inspectable proof hash",
+      "A verification nonce cannot be reused",
+      "Expired verification requests are refused",
+      "Only the admin controls issuer trust; suspension blocks verification",
+      "Live revocation blocks subsequent verification",
+      "Self-recorded documents cannot verify qualifications",
+      "Already expired credentials cannot be minted",
+      "NFT owner enumeration returns the holder\u2019s records"
+    ],
+    "transactions": [
+      {
+        "method": "mint_record",
+        "hash": "37gABhUdYkmNAocibZBhVnFyzr1NpTedxr55u9gQhHep",
+        "success": true
+      },
+      {
+        "method": "mint_record",
+        "hash": "Bnww3KeupeoB7uUEgUgP2mfCWJiBsWtgWhpivxV3sKoR",
+        "success": true
+      },
+      {
+        "method": "mint_record",
+        "hash": "eBVAuZKufMWTp9jQLeHQzaZ7a8um4disoC7ugJtpuQF",
+        "success": false
+      },
+      {
+        "method": "mint_record",
+        "hash": "H1LfDtty12aYi32MG1WenXWSXMyrKu4MjMz1fX8jJKWU",
+        "success": false
+      },
+      {
+        "method": "revoke_record",
+        "hash": "4PK13ke5Mq9njC1FtSkw91vXKjPQ4mpJ5bQC4PSHmyQF",
+        "success": false
+      },
+      {
+        "method": "nft_transfer",
+        "hash": "GnSvbka3B6BxqRjhnHtaeSWWCdnNbmq39DnScB1ZixtH",
+        "success": false
+      },
+      {
+        "method": "nft_approve",
+        "hash": "4Pg9377UWCTWQuq8QV5nNekqBmyXmsQd44R34o8gezGj",
+        "success": false
+      },
+      {
+        "method": "record_verification",
+        "hash": "9dnt7bjiqnPHxyAtLuFqXPToPE2YLGkhmupuEeu6uGQ4",
+        "success": false
+      },
+      {
+        "method": "record_verification",
+        "hash": "8kAe6jDQ2mnHwCvaXotHaydmaxc8pEpTuCbQgK8kDaM1",
+        "success": true
+      },
+      {
+        "method": "record_verification",
+        "hash": "BoJitM7jUVWyGZGcGqD49AdNJmg79WwMKrA6jWcLeEVA",
+        "success": false
+      },
+      {
+        "method": "record_verification",
+        "hash": "7JAkN1qyC3dsqnyhqtkDRAB4pDHwoJph8T1F8qWU8zKq",
+        "success": false
+      },
+      {
+        "method": "set_issuer_active",
+        "hash": "AnihhvDQ6gDxYQXz4h49nhpUSSoKkiUhUMtDAEpGmPz8",
+        "success": false
+      },
+      {
+        "method": "set_issuer_active",
+        "hash": "5vYP9i2YGbH2czZ3vE6YgcME1A8eCS1eChLvis8z4Wkz",
+        "success": true
+      },
+      {
+        "method": "record_verification",
+        "hash": "3ffM4q3t6pKDysruUeRbA63cpeTbVk5DSUQ3ZzkzYmFg",
+        "success": false
+      },
+      {
+        "method": "set_issuer_active",
+        "hash": "8Pj6Cr97g9cCrxDGbDr1JdtiX94Nzo4PaygYS2GznfoX",
+        "success": true
+      },
+      {
+        "method": "revoke_record",
+        "hash": "7pDfAdVejhx8URFhjBXXc5LWatGqLAZeeuWMG2ibAKJb",
+        "success": true
+      },
+      {
+        "method": "record_verification",
+        "hash": "7aPCnb38dM1KVLJ8zcEUpuMQ4Dm925JqVSrzvWVE3A7s",
+        "success": false
+      },
+      {
+        "method": "mint_record",
+        "hash": "9F26fqpghw8JmGtx2YPU5PEXsfHmo3WyzQY58oNknNSL",
+        "success": true
+      },
+      {
+        "method": "record_verification",
+        "hash": "3Pi8rmCWPEkKxGRL7YRCJPRCfTiNDths6tKRWjSTLerJ",
+        "success": false
+      },
+      {
+        "method": "mint_record",
+        "hash": "3iZi4SHmTtpd5XWNpu3Yy7Nn5D8a91MHiqJN3y5kahm4",
+        "success": false
+      }
+    ]
+  },
+  "browser": {
+    "status": "passed",
+    "checked_at": "2026-11-02T10:38:44.683Z",
+    "checks": [
+      "Landing page and interactive disclosure preview render",
+      "Home fits desktop, 390px and 320px widths",
+      "A new encrypted vault opens without a blockchain wallet",
+      "A real file becomes an unverified NFT while the original stays local and downloads unchanged",
+      "IndexedDB contains an encrypted envelope rather than plaintext files or credentials",
+      "Owner consent creates a real proof with requested fields and excludes hidden name, score and original file",
+      "Backend independently accepts the proof and confirms a live NEAR verification receipt",
+      "Reusing the same verification request is rejected",
+      "Consent history preserves the successful receipt after a rejected replay",
+      "Eight real cryptographic lab checks pass, including altered fields, holder substitution and excess disclosure",
+      "Lock removes private content and an incorrect password cannot unlock it",
+      "Encrypted backup restores the documents and holder on a separate browser",
+      "Owner-authorized live revocation blocks exported credential proofs",
+      "Vault and verification desk fit 390px and 320px mobile viewports",
+      "Malformed proof input is refused before verification",
+      "API requests never receive the vault password, original file, encoded original or private filename",
+      "No browser exceptions in the full tested workflow"
+    ],
+    "evidence": [
+      {
+        "name": "self-recorded mint",
+        "token_id": "facet_30d254cad2ebb6c2b50b90d9dd64aef7",
+        "transaction": {
+          "hash": "EyBXduYRT2KBwWQhihh79QoYoguVcecqG5GfPDkYkHMq",
+          "success": true,
+          "method": "mint_record"
+        }
+      },
+      {
+        "name": "demo issuance",
+        "token_id": "facet_811d398df148931e62c120436d771fde",
+        "transaction": {
+          "hash": "GJ61PbHtvVoUztAJeEodTbAaK5dEfJLSb8bKadnGVDtT",
+          "success": true,
+          "method": "mint_record"
+        }
+      },
+      {
+        "name": "accepted proof",
+        "transaction": {
+          "hash": "rkJL5S7A7hS9ctbaTMGJWrpDbj6Wd3Jm8xHMJLK6uNc",
+          "success": true,
+          "method": "record_verification"
+        },
+        "proof_hash": "0998fb524ea598a02f7044f12a20900da6b579ec0ba2e9d6f77820cfc22a2f68"
+      },
+      {
+        "name": "live revocation",
+        "transaction": {
+          "hash": "BYaBnTpM35cj9xxkFEu7kjZzVpfRCwVQsSzUrMdXBuJE",
+          "success": true,
+          "method": "revoke_record"
+        }
+      }
+    ],
+    "browser_errors": []
+  },
+  "independent_verifier": {
+    "status": "passed",
+    "checked_at": "2026-11-02T10:34:11.450Z",
+    "checks": [
+      "A separate verifier imports and accepts an active proof without creating or unlocking a vault",
+      "Verifier UI shows requested course and completion fields while omitting hidden name and score",
+      "Verified results fit desktop, 390px and 320px viewports",
+      "The hosted API rejects an action signed by a different holder",
+      "The hosted API rejects a changed claim even when the legitimate holder resigns it",
+      "No browser exceptions in independent-verifier checks"
+    ],
+    "evidence": [
+      {
+        "name": "external verifier acceptance",
+        "token_id": "facet_388b89a3efd13d9e8e9e2b2c14b04c00",
+        "mint_transaction": {
+          "hash": "4zMRTnyHBEerBPyb82N2PDWrXp2HttoZq1jkpf5V5n5x",
+          "success": true,
+          "method": "mint_record"
+        },
+        "verification_transaction": {
+          "hash": "5PFumnwbfjrSoepai8rWP1Rcy7J8FrzSaS5YoDkW2Bni",
+          "success": true,
+          "method": "record_verification"
+        }
+      }
+    ],
+    "browser_errors": []
+  },
+  "counts": {
+    "unit_tests": 17,
+    "live_contract_checks": 16,
+    "hosted_browser_checks": 23
+  },
+  "boundaries": [
+    "The issuer and certificate claims are fictional demo data.",
+    "Uploaded documents are self-recorded and unverified.",
+    "Document bytes are encrypted locally; ownership and blockchain activity remain public.",
+    "The verification relay runs BBS math; the smart contract does not execute it."
+  ]
+}

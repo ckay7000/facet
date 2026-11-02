@@ -1,0 +1,99 @@
+{
+  "name": "Facet",
+  "base": "facet-demo",
+  "theme": {
+    "background": "#f3f4fb",
+    "ink": "#19243b",
+    "accent": "#304ffe",
+    "soft": "#e9e8fc"
+  },
+  "scenes": [
+    {
+      "shot": "02-encrypted-original",
+      "title": "Keep the original private",
+      "result": "Upload \u2192 encrypted local file",
+      "narration": "A hiring team needs course completion, not your whole certificate. In Facet, I upload training notes into a password-protected local vault."
+    },
+    {
+      "shot": "03-self-recorded-nft",
+      "title": "A record is not a qualification",
+      "result": "Create NFT \u2192 explicitly unverified",
+      "narration": "I create a private document NFT. The original stays on my device. This self-recorded fingerprint is explicitly unverified; uploading does not authenticate it."
+    },
+    {
+      "shot": "04-issued-credential",
+      "title": "Claims signed by an issuer",
+      "result": "Issue credential \u2192 real BBS signature",
+      "narration": "Now I issue a fictional training credential from Facet Test Academy. Its claims have a real BBS signature and a holder-bound NEAR record."
+    },
+    {
+      "shot": "05-request-fields",
+      "title": "Ask only for what matters",
+      "result": "Request \u2192 course + completion",
+      "narration": "The example hiring team requests just the course and completion status. The request binds its purpose, selected fields and a short-lived, single-use nonce."
+    },
+    {
+      "shot": "06-disclosure-preview",
+      "title": "The holder controls disclosure",
+      "result": "Preview \u2192 approve exact fields",
+      "narration": "Before approving, I can see exactly what is shared. Course and completion are revealed. The name, score, date and student reference stay hidden."
+    },
+    {
+      "shot": "07-owner-approval",
+      "title": "Export a selective proof",
+      "result": "Approve \u2192 proof ready",
+      "narration": "I approve and export the proof. The real exported package excludes the hidden name and score, and includes the required public credential bindings."
+    },
+    {
+      "shot": "08-external-verifier",
+      "title": "Verify on a separate device",
+      "result": "Import proof \u2192 no vault required",
+      "narration": "In a separate browser, the verifier imports my proof without opening a vault or receiving the original document. Then they run the verification checks."
+    },
+    {
+      "shot": "09-verified-claims",
+      "title": "A useful answer, with evidence",
+      "result": "Verify \u2192 approved claims + NEAR receipt",
+      "narration": "The proof checks out. The verifier sees Data Privacy Foundations and Completed. A genuine NEAR transaction records the single-use verification receipt."
+    },
+    {
+      "shot": "10-verification-checks",
+      "title": "NEAR provides shared current status",
+      "result": "Issuer + expiry + revocation + nonce",
+      "narration": "The checks cover signatures, holder approval and live status. NEAR anchors issuer keys, expiry, revocation and nonce use. BBS math runs outside the contract."
+    },
+    {
+      "shot": "12-proof-lab",
+      "title": "Check the rejection paths",
+      "result": "Run lab \u2192 eight expected outcomes",
+      "narration": "The proof lab runs real positive and negative checks, including altered claims and holder substitution. All eight behave as expected. Used requests cannot be replayed."
+    },
+    {
+      "shot": "13-revocation-consent",
+      "title": "Stop future verification",
+      "result": "Owner confirms \u2192 revoked on NEAR",
+      "narration": "I generate a fresh unused proof, then revoke the credential. Revocation changes its current NEAR status. It cannot erase information already shared."
+    },
+    {
+      "shot": "14-revoked-proof",
+      "title": "A fresh proof is now rejected",
+      "result": "Verify again \u2192 revocation fails",
+      "narration": "That unused proof now fails specifically because of revocation. Facet demonstrates useful credential NFTs with controlled disclosure. Try the live testnet app and inspect the public code."
+    }
+  ],
+  "narration": {
+    "model": "Kokoro-82M v1.0",
+    "voice": "af_heart",
+    "speed": 1.0,
+    "pause_seconds": 0.55,
+    "pronunciations": {
+      "BBS": "B. B. S.",
+      "NFT": "N. F. T.",
+      "NFTs": "N. F. T.s",
+      "NEAR": "Near",
+      "Sealwork": "Seal work",
+      "OutLayer": "Out Layer",
+      "AI": "A. I."
+    }
+  }
+}

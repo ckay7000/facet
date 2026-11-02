@@ -1,0 +1,42 @@
+{
+  "network": "testnet",
+  "contract_id": "credentials.facet-lab-1102.testnet",
+  "checks_contract_id": "facet-checks-1102.testnet",
+  "root_id": "facet-lab-1102.testnet",
+  "issuer_id": "issuer.facet-lab-1102.testnet",
+  "verifier_id": "verifier.facet-lab-1102.testnet",
+  "permissions": {
+    "issuer": {
+      "FunctionCall": {
+        "allowance": "300000000000000000000000",
+        "method_names": [
+          "mint_record",
+          "revoke_record"
+        ],
+        "receiver_id": "credentials.facet-lab-1102.testnet"
+      }
+    },
+    "verifier": {
+      "FunctionCall": {
+        "allowance": "300000000000000000000000",
+        "method_names": [
+          "record_verification"
+        ],
+        "receiver_id": "credentials.facet-lab-1102.testnet"
+      }
+    }
+  },
+  "issuer_public_key": "jbysU5EybeUzon1Zk6JNlsuW+vUNpzZRUwqVJxY7yQqswUG1PIvVlxCooOBVY9yyE0f8MhDvpue2f2TevGEbocUvEQ9Bk/jjJdo8CgVWA3vWs+JDpKSLoQppCrA+BBe5",
+  "request_public_key": "70af3b91966389e8e0dcfbcf5e9b256b89e86c02b1757a6eef9e626f6fe105c8",
+  "wasm_sha256": "b9f6a074c51d2c4ab04886164cf2e5e15a5c7df91050e8554ed0e9b461744367",
+  "wasm_bytes": 525637,
+  "source_sha256": "1e9c4f82fcf76e96e3074dd884fc7ae58e6379da0187db5249a1f3d589f8a179",
+  "transactions": [
+    "4CVzGU8z7gLznpMvH3NHgrVfTJhPJvSjSGgM82KSYxH2",
+    "F7VWbe8hD4ssM81Z1cXMV5bi8gKqsskWx5wNcpuVskny",
+    "3JKy8oURFFphe59nAoSkxmXjTdUi775j9HWuKqSEL3GJ",
+    "SZBc1erZYyw7pMEw54SJR2sFjGcz1AhVW7uDtdTBFEE",
+    "CxGFef6zknXFy8runCtupEkgmE13js3BuvLzPq2UpC8k"
+  ],
+  "deployed_at": "2026-11-02T10:19:51.266Z"
+}

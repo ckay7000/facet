@@ -1,0 +1,14 @@
+{
+  "removed_temporary_deployments": [
+    "dpl_GifA1LanEpa4CiojrfdnFjhPG5ka",
+    "dpl_BeEDXi1cAEkDhWWy8DNi3Qt5frkK",
+    "dpl_2QbxyhiRDCYuKhQR4dtqFE7vdMpZ",
+    "dpl_F7L84niHfmy6BR1vJAcG39467Czs",
+    "dpl_CJhSpdDxjF7bfbH9PtmZbWdZdWtM",
+    "dpl_3nod3GxEZ8ZK5bAi45B9LxDRMhQb"
+  ],
+  "production_deployment_id": "dpl_Cg4rcegFtpFG7Zm1kF2jrTJCU57L",
+  "browser_endpoint_removed": true,
+  "browser_secret_removed": true,
+  "checked_at": "2026-11-02T10:46:48.496Z"
+}

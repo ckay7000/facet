@@ -1,0 +1,95 @@
+1
+00:00:00,000 --> 00:00:06,615
+A hiring team needs course completion, not your whole certificate. In Facet, I upload training notes
+
+2
+00:00:06,615 --> 00:00:08,683
+into a password-protected local vault.
+
+3
+00:00:09,233 --> 00:00:17,009
+I create a private document NFT. The original stays on my device. This self-recorded fingerprint is
+
+4
+00:00:17,009 --> 00:00:20,411
+explicitly unverified; uploading does not authenticate it.
+
+5
+00:00:20,961 --> 00:00:28,089
+Now I issue a fictional training credential from Facet Test Academy. Its claims have a real BBS
+
+6
+00:00:28,089 --> 00:00:30,604
+signature and a holder-bound NEAR record.
+
+7
+00:00:31,154 --> 00:00:37,679
+The example hiring team requests just the course and completion status. The request binds its
+
+8
+00:00:37,679 --> 00:00:41,159
+purpose, selected fields and a short-lived, single-use nonce.
+
+9
+00:00:41,709 --> 00:00:47,675
+Before approving, I can see exactly what is shared. Course and completion are revealed. The name,
+
+10
+00:00:47,675 --> 00:00:50,285
+score, date and student reference stay hidden.
+
+11
+00:00:50,835 --> 00:00:57,505
+I approve and export the proof. The real exported package excludes the hidden name and score, and
+
+12
+00:00:57,505 --> 00:00:59,859
+includes the required public credential bindings.
+
+13
+00:01:00,409 --> 00:01:06,624
+In a separate browser, the verifier imports my proof without opening a vault or receiving the
+
+14
+00:01:06,624 --> 00:01:09,732
+original document. Then they run the verification checks.
+
+15
+00:01:10,282 --> 00:01:17,292
+The proof checks out. The verifier sees Data Privacy Foundations and Completed. A genuine NEAR
+
+16
+00:01:17,292 --> 00:01:20,095
+transaction records the single-use verification receipt.
+
+17
+00:01:20,645 --> 00:01:27,627
+The checks cover signatures, holder approval and live status. NEAR anchors issuer keys, expiry,
+
+18
+00:01:27,627 --> 00:01:32,613
+revocation and nonce use. BBS math runs outside the contract.
+
+19
+00:01:33,163 --> 00:01:39,364
+The proof lab runs real positive and negative checks, including altered claims and holder
+
+20
+00:01:39,364 --> 00:01:44,235
+substitution. All eight behave as expected. Used requests cannot be replayed.
+
+21
+00:01:44,785 --> 00:01:51,374
+I generate a fresh unused proof, then revoke the credential. Revocation changes its current NEAR
+
+22
+00:01:51,374 --> 00:01:54,449
+status. It cannot erase information already shared.
+
+23
+00:01:54,999 --> 00:02:01,378
+That unused proof now fails specifically because of revocation. Facet demonstrates useful credential
+
+24
+00:02:01,378 --> 00:02:08,247
+NFTs with controlled disclosure. Try the live testnet app and inspect the public code.

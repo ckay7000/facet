@@ -1,0 +1,9 @@
+import { readFile } from 'node:fs/promises';
+import { checkPresentation, hash, presentationHash, validPresentationShape } from '../shared/crypto.js';
+import { CurlProvider } from './curl-rpc.js';
+import { closeBridge } from './tool-bridge.js';
+const filename = process.argv[2]; if (!filename) throw new Error('Usage: node --import tsx scripts/check-proof.ts proof.json');
+const proof = JSON.parse(await readFile(filename, 'utf8')); if (!validPresentationShape(proof)) throw new Error('Invalid Facet proof package.');
+const deployment = JSON.parse(await readFile('deployments/testnet.json', 'utf8')), rpc = new CurlProvider();
+async function view(method: string, args: object = {}) { const r: any = await rpc.query({ request_type: 'call_function', account_id: deployment.contract_id, method_name: method, args_base64: Buffer.from(JSON.stringify(args)).toString('base64'), finality: 'final' }); return JSON.parse(Buffer.from(r.result).toString()); }
+try { const record = await view('get_record', { token_id: proof.token_id }), issuer = await view('get_issuer'), config = await view('get_config'); if (!record) throw new Error('Credential record does not exist.'); const checks = await checkPresentation(proof, record, issuer, config.request_public_key, deployment.contract_id); const receipt = await view('get_verification', { nonce_hash: hash(proof.request.payload.nonce) }); checks.push({ id: 'nonce', label: 'Request has not been used', ok: !receipt, detail: 'A recorded request cannot be accepted again.' }); console.log(JSON.stringify({ checked_at: new Date().toISOString(), source: 'independent read-only check', accepted_currently: checks.every(c => c.ok), prior_receipt_matches_proof: !!receipt && receipt.proof_hash === presentationHash(proof), checks }, null, 2)); if (!checks.every(c => c.ok)) process.exitCode = 1; } finally { closeBridge(); }

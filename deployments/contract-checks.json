@@ -1,0 +1,126 @@
+{
+  "status": "passed",
+  "network": "testnet",
+  "contract_id": "facet-checks-1102.testnet",
+  "checked_at": "2026-11-02T10:25:19.917Z",
+  "checks": [
+    "Registered issuer mints a holder-bound demo credential",
+    "Identical mint retries preserve the original record",
+    "Mint retries cannot change the holder",
+    "Unregistered accounts cannot mint credentials",
+    "Unregistered accounts cannot revoke credentials",
+    "Public NFT metadata excludes filenames, documents and personal claims",
+    "Transfers and marketplace approvals refuse credential resale",
+    "Only the designated verification relay records checks",
+    "A valid relay result records a publicly inspectable proof hash",
+    "A verification nonce cannot be reused",
+    "Expired verification requests are refused",
+    "Only the admin controls issuer trust; suspension blocks verification",
+    "Live revocation blocks subsequent verification",
+    "Self-recorded documents cannot verify qualifications",
+    "Already expired credentials cannot be minted",
+    "NFT owner enumeration returns the holder’s records"
+  ],
+  "transactions": [
+    {
+      "method": "mint_record",
+      "hash": "37gABhUdYkmNAocibZBhVnFyzr1NpTedxr55u9gQhHep",
+      "success": true
+    },
+    {
+      "method": "mint_record",
+      "hash": "Bnww3KeupeoB7uUEgUgP2mfCWJiBsWtgWhpivxV3sKoR",
+      "success": true
+    },
+    {
+      "method": "mint_record",
+      "hash": "eBVAuZKufMWTp9jQLeHQzaZ7a8um4disoC7ugJtpuQF",
+      "success": false
+    },
+    {
+      "method": "mint_record",
+      "hash": "H1LfDtty12aYi32MG1WenXWSXMyrKu4MjMz1fX8jJKWU",
+      "success": false
+    },
+    {
+      "method": "revoke_record",
+      "hash": "4PK13ke5Mq9njC1FtSkw91vXKjPQ4mpJ5bQC4PSHmyQF",
+      "success": false
+    },
+    {
+      "method": "nft_transfer",
+      "hash": "GnSvbka3B6BxqRjhnHtaeSWWCdnNbmq39DnScB1ZixtH",
+      "success": false
+    },
+    {
+      "method": "nft_approve",
+      "hash": "4Pg9377UWCTWQuq8QV5nNekqBmyXmsQd44R34o8gezGj",
+      "success": false
+    },
+    {
+      "method": "record_verification",
+      "hash": "9dnt7bjiqnPHxyAtLuFqXPToPE2YLGkhmupuEeu6uGQ4",
+      "success": false
+    },
+    {
+      "method": "record_verification",
+      "hash": "8kAe6jDQ2mnHwCvaXotHaydmaxc8pEpTuCbQgK8kDaM1",
+      "success": true
+    },
+    {
+      "method": "record_verification",
+      "hash": "BoJitM7jUVWyGZGcGqD49AdNJmg79WwMKrA6jWcLeEVA",
+      "success": false
+    },
+    {
+      "method": "record_verification",
+      "hash": "7JAkN1qyC3dsqnyhqtkDRAB4pDHwoJph8T1F8qWU8zKq",
+      "success": false
+    },
+    {
+      "method": "set_issuer_active",
+      "hash": "AnihhvDQ6gDxYQXz4h49nhpUSSoKkiUhUMtDAEpGmPz8",
+      "success": false
+    },
+    {
+      "method": "set_issuer_active",
+      "hash": "5vYP9i2YGbH2czZ3vE6YgcME1A8eCS1eChLvis8z4Wkz",
+      "success": true
+    },
+    {
+      "method": "record_verification",
+      "hash": "3ffM4q3t6pKDysruUeRbA63cpeTbVk5DSUQ3ZzkzYmFg",
+      "success": false
+    },
+    {
+      "method": "set_issuer_active",
+      "hash": "8Pj6Cr97g9cCrxDGbDr1JdtiX94Nzo4PaygYS2GznfoX",
+      "success": true
+    },
+    {
+      "method": "revoke_record",
+      "hash": "7pDfAdVejhx8URFhjBXXc5LWatGqLAZeeuWMG2ibAKJb",
+      "success": true
+    },
+    {
+      "method": "record_verification",
+      "hash": "7aPCnb38dM1KVLJ8zcEUpuMQ4Dm925JqVSrzvWVE3A7s",
+      "success": false
+    },
+    {
+      "method": "mint_record",
+      "hash": "9F26fqpghw8JmGtx2YPU5PEXsfHmo3WyzQY58oNknNSL",
+      "success": true
+    },
+    {
+      "method": "record_verification",
+      "hash": "3Pi8rmCWPEkKxGRL7YRCJPRCfTiNDths6tKRWjSTLerJ",
+      "success": false
+    },
+    {
+      "method": "mint_record",
+      "hash": "3iZi4SHmTtpd5XWNpu3Yy7Nn5D8a91MHiqJN3y5kahm4",
+      "success": false
+    }
+  ]
+}

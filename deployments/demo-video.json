@@ -1,0 +1,125 @@
+{
+  "project": "Facet",
+  "duration_seconds": 128.8,
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "video_codec": "H264",
+  "audio_codec": "AAC",
+  "faststart": true,
+  "narrated": true,
+  "burned_in_captions": true,
+  "caption_files": [
+    "vtt",
+    "srt"
+  ],
+  "caption_timing": "Proportional phrase timing within each narrated scene",
+  "source": "Edited real hosted screenshots; not an uninterrupted screen recording",
+  "capture_evidence": "deployments/demo-capture.json",
+  "fictional_data": true,
+  "voice": {
+    "model": "Kokoro-82M v1.0",
+    "voice": "af_heart",
+    "speed": 1.0,
+    "pause_seconds": 0.55,
+    "pronunciations": {
+      "BBS": "B. B. S.",
+      "NFT": "N. F. T.",
+      "NFTs": "N. F. T.s",
+      "NEAR": "Near",
+      "Sealwork": "Seal work",
+      "OutLayer": "Out Layer",
+      "AI": "A. I."
+    }
+  },
+  "shots": [
+    "02-encrypted-original",
+    "03-self-recorded-nft",
+    "04-issued-credential",
+    "05-request-fields",
+    "06-disclosure-preview",
+    "07-owner-approval",
+    "08-external-verifier",
+    "09-verified-claims",
+    "10-verification-checks",
+    "12-proof-lab",
+    "13-revocation-consent",
+    "14-revoked-proof"
+  ],
+  "scene_timing": [
+    {
+      "start": 0,
+      "voice_end": 8.682666666666666,
+      "end": 9.232666666666667,
+      "shot": "02-encrypted-original"
+    },
+    {
+      "start": 9.232666666666667,
+      "voice_end": 20.41133333333333,
+      "end": 20.961333333333332,
+      "shot": "03-self-recorded-nft"
+    },
+    {
+      "start": 20.961333333333332,
+      "voice_end": 30.604,
+      "end": 31.154,
+      "shot": "04-issued-credential"
+    },
+    {
+      "start": 31.154,
+      "voice_end": 41.159333333333336,
+      "end": 41.70933333333333,
+      "shot": "05-request-fields"
+    },
+    {
+      "start": 41.70933333333333,
+      "voice_end": 50.285333333333334,
+      "end": 50.83533333333333,
+      "shot": "06-disclosure-preview"
+    },
+    {
+      "start": 50.83533333333333,
+      "voice_end": 59.85933333333333,
+      "end": 60.40933333333333,
+      "shot": "07-owner-approval"
+    },
+    {
+      "start": 60.40933333333333,
+      "voice_end": 69.732,
+      "end": 70.282,
+      "shot": "08-external-verifier"
+    },
+    {
+      "start": 70.282,
+      "voice_end": 80.09533333333333,
+      "end": 80.64533333333333,
+      "shot": "09-verified-claims"
+    },
+    {
+      "start": 80.64533333333333,
+      "voice_end": 92.61333333333333,
+      "end": 93.16333333333333,
+      "shot": "10-verification-checks"
+    },
+    {
+      "start": 93.16333333333333,
+      "voice_end": 104.23533333333333,
+      "end": 104.78533333333333,
+      "shot": "12-proof-lab"
+    },
+    {
+      "start": 104.78533333333333,
+      "voice_end": 114.44933333333333,
+      "end": 114.99933333333333,
+      "shot": "13-revocation-consent"
+    },
+    {
+      "start": 114.99933333333333,
+      "voice_end": 128.24733333333333,
+      "end": 128.79733333333334,
+      "shot": "14-revoked-proof"
+    }
+  ],
+  "bytes": 8706462,
+  "sha256": "f1be757c3fd7aaac63e20c8a6ebf39db0a2d5acc37a62fd05ad5b024c9272cab"
+}

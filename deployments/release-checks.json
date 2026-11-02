@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "checked_at": "2026-11-02T10:46:27.577239+00:00",
+  "url": "https://facet-near.vercel.app",
+  "production_deployment": "dpl_Cg4rcegFtpFG7Zm1kF2jrTJCU57L",
+  "asset_hashes": {
+    "js": "39715fb3c5b227d7df5acb8538c5e20456d89c5b722871a73effb9b036c370c0",
+    "css": "df86aa4f2246737df3189055efde0d68926e81dd52af04ea42a31f619b6184f8"
+  },
+  "checks": [
+    "The production homepage serves the tested client JavaScript and CSS byte-for-byte",
+    "Live config resolves the dedicated NEAR contract and active demo issuer",
+    "Published evidence reports 17 unit tests, 16 live contract checks and 23 browser checks",
+    "Independent verification source matches the validated local code",
+    "Security headers are present",
+    "The temporary browser-check endpoint returns 404"
+  ]
+}

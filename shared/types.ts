@@ -1,0 +1,17 @@
+export type RecordKind = 'self_recorded' | 'demo_issued';
+export type ChainRecord = { token_id: string; owner_id: string; commitment: string; kind: RecordKind; issuer_id: string | null; issued_at: number; expires_at: number; revoked: boolean; revoked_at: number | null };
+export type Issuer = { id: string; name: string; public_key: string; active: boolean; demo: boolean };
+export type ChainConfig = { network: 'testnet'; contract_id: string; issuer_account: string; verifier_account: string; request_public_key: string; records: number; checks: number; daily_cap: number; minted_today: number };
+export type Config = { configured: boolean; contract: ChainConfig | null; issuer: Issuer | null; explorer: string; request_public_key: string; network: 'testnet' };
+export type Credential = { token_id: string; issuer_id: string; signature: string; messages: string[]; header: string; record: ChainRecord };
+export type FieldId = 'course' | 'achievement' | 'learner' | 'score' | 'completed' | 'reference';
+export type VerificationRequest = { version: 'facet-request-v1'; nonce: string; audience: string; purpose: string; fields: FieldId[]; created_at: number; expires_at: number };
+export type SignedRequest = { payload: VerificationRequest; signature: string };
+export type Presentation = { version: 'facet-presentation-v1'; token_id: string; request: SignedRequest; proof: string; disclosed: { index: number; value: string }[]; holder_signature: string };
+export type Check = { id: string; label: string; ok: boolean; detail: string };
+export type Tx = { hash: string; success: boolean; method: string };
+export type VerificationResult = { accepted: boolean; checks: Check[]; claims: { field: FieldId; label: string; value: string }[]; checked_at: number; record: ChainRecord; issuer: Issuer; transaction: Tx | null; proof_hash: string; request: VerificationRequest };
+export type DocumentItem = { id: string; title: string; filename: string; mime: string; data: string; salt: string; commitment: string; created_at: number; intended_kind?: RecordKind; record: ChainRecord | null; credential: Credential | null; issuance_tx: string | null };
+export type ConsentReceipt = { id: string; document_id: string; audience: string; purpose: string; fields: FieldId[]; when: number; accepted: boolean; proof_hash: string; transaction_hash: string | null };
+export type VaultData = { version: 'facet-vault-data-v1'; holder_seed: string; documents: DocumentItem[]; receipts: ConsentReceipt[] };
+export type VaultEnvelope = { version: 'facet-encrypted-vault-v1'; algorithm: 'AES-256-GCM'; kdf: 'PBKDF2-SHA-256'; iterations: number; salt: string; iv: string; ciphertext: string };

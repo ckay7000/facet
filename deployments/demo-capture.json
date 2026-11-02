@@ -1,0 +1,233 @@
+{
+  "status": "passed",
+  "project": "Facet",
+  "source": "Actual hosted UI captures, edited into a narrated walkthrough",
+  "fictional_data": true,
+  "private_keys_excluded": true,
+  "hidden_claims_excluded_from_proof": true,
+  "independent_verifier_has_no_vault": true,
+  "revocation_rejected_unused_proof": true,
+  "checked_at": "2026-11-02T11:48:00.394Z",
+  "evidence": [
+    {
+      "name": "self-recorded document",
+      "token_id": "facet_990487b3835779726367e3fb77417f31",
+      "transaction": {
+        "hash": "7zhWJrkLz9cuj4mnMrhbp9jxyCAskvQMi58ovdnv2GLk",
+        "success": true,
+        "method": "mint_record"
+      }
+    },
+    {
+      "name": "fictional issuer-signed credential",
+      "token_id": "facet_2950b7526362a3b3933ca9050335d3fd",
+      "transaction": {
+        "hash": "HW3UZC8gCep9fgWoKyxfey8wqmeAaRna6ySKAj31xwDy",
+        "success": true,
+        "method": "mint_record"
+      }
+    },
+    {
+      "name": "external verification",
+      "transaction": {
+        "hash": "H3gtNSHp5x4i2ie8kV4LbU6tFrzQy2w5c6FD5Vbx3bFG",
+        "success": true,
+        "method": "record_verification"
+      },
+      "proof_hash": "5790c0b559fc811e3291a1b7f814e4cfc5c72e0fff8fff9eb16d7b927075fd79"
+    },
+    {
+      "name": "live revocation",
+      "transaction": {
+        "hash": "EsTFaPczyzDSNXvakbuZDNXmBZsrYAYCqxGr22PCf5ao",
+        "success": true,
+        "method": "revoke_record"
+      }
+    }
+  ],
+  "browser_errors": [],
+  "shots": [
+    {
+      "name": "01-vault",
+      "focus": {
+        "x": 266,
+        "y": 393.046875,
+        "width": 547,
+        "height": 554.78125
+      },
+      "url": "https://facet-near.vercel.app/vault",
+      "captured_at": "2026-11-02T11:47:12.034Z",
+      "file": "docs/demo-captures/01-vault.jpg",
+      "sha256": "651e5896be64fda8aab2f94b84b8ca6ebd627f967c2380eedf0fab6e91938b81"
+    },
+    {
+      "name": "02-encrypted-original",
+      "focus": {
+        "x": 812.296875,
+        "y": 647.234375,
+        "width": 562.703125,
+        "height": 188
+      },
+      "url": "https://facet-near.vercel.app/vault",
+      "captured_at": "2026-11-02T11:47:15.707Z",
+      "file": "docs/demo-captures/02-encrypted-original.jpg",
+      "sha256": "791ea449203b051fe207480920c9a22720368f98103b25352495053be892d26d"
+    },
+    {
+      "name": "03-self-recorded-nft",
+      "focus": {
+        "x": 787.296875,
+        "y": 350.234375,
+        "width": 612.703125,
+        "height": 650
+      },
+      "url": "https://facet-near.vercel.app/vault",
+      "captured_at": "2026-11-02T11:47:21.636Z",
+      "file": "docs/demo-captures/03-self-recorded-nft.jpg",
+      "sha256": "ae0a744b0f1c379dbeb11afc463ab2270edf68a968ae7c100a732c2d21605d83"
+    },
+    {
+      "name": "04-issued-credential",
+      "focus": {
+        "x": 812.296875,
+        "y": 492.234375,
+        "width": 562.703125,
+        "height": 312.796875
+      },
+      "url": "https://facet-near.vercel.app/vault",
+      "captured_at": "2026-11-02T11:47:27.230Z",
+      "file": "docs/demo-captures/04-issued-credential.jpg",
+      "sha256": "d7c282ed4f40de7624248c7f14cf6b071ddb00356c241e8a73889627b8f3df63"
+    },
+    {
+      "name": "05-request-fields",
+      "focus": {
+        "x": 293,
+        "y": 610.1875,
+        "width": 503,
+        "height": 245
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-02T11:47:29.365Z",
+      "file": "docs/demo-captures/05-request-fields.jpg",
+      "sha256": "34fc8523103216c31c05cbd13aa65cc94b6fd5fbbed85dca4e985559149d4d1b"
+    },
+    {
+      "name": "06-disclosure-preview",
+      "focus": {
+        "x": 870,
+        "y": 501.046875,
+        "width": 503,
+        "height": 265
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-02T11:47:31.374Z",
+      "file": "docs/demo-captures/06-disclosure-preview.jpg",
+      "sha256": "f7c50b096e88e5e978abc16bae2f1ac49189f26a691263e4bc084073e177bc56"
+    },
+    {
+      "name": "07-owner-approval",
+      "focus": {
+        "x": 843,
+        "y": 281.046875,
+        "width": 557,
+        "height": 641.875
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-02T11:47:34.480Z",
+      "file": "docs/demo-captures/07-owner-approval.jpg",
+      "sha256": "75b6e21e9fc1058f5d88cf8c4c5e3c179414dac287a7c977540c8df46b20d7b8"
+    },
+    {
+      "name": "08-external-verifier",
+      "focus": {
+        "x": 843,
+        "y": 390.046875,
+        "width": 557,
+        "height": 370.46875
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-02T11:47:36.727Z",
+      "file": "docs/demo-captures/08-external-verifier.jpg",
+      "sha256": "16a332e34cf06858de6fb1c0dea320414fc00a716d1e6f8fcf26a970568268fd"
+    },
+    {
+      "name": "09-verified-claims",
+      "focus": {
+        "x": 292,
+        "y": 686.234375,
+        "width": 1082,
+        "height": 72
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-02T11:47:44.424Z",
+      "file": "docs/demo-captures/09-verified-claims.jpg",
+      "sha256": "42ebba9f615f9814faf83f10951c5048365ee7d3c69f82a8e6a99b043519ca9c"
+    },
+    {
+      "name": "10-verification-checks",
+      "focus": {
+        "x": 292,
+        "y": 437.234375,
+        "width": 1082,
+        "height": 225
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-02T11:47:45.341Z",
+      "file": "docs/demo-captures/10-verification-checks.jpg",
+      "sha256": "a7fca5d1d40bf6817ba0f352a18f6f655ad5dadc3ea2ceb863cadf789b4dffe0"
+    },
+    {
+      "name": "11-consent-history",
+      "focus": {
+        "x": 266,
+        "y": 260.046875,
+        "width": 1134,
+        "height": 166.296875
+      },
+      "url": "https://facet-near.vercel.app/activity",
+      "captured_at": "2026-11-02T11:47:45.883Z",
+      "file": "docs/demo-captures/11-consent-history.jpg",
+      "sha256": "5aa34125742ebd64b2d6e2b68f770a501e9a9348c3c8b40c3e2fd9d6bf5dfcfc"
+    },
+    {
+      "name": "12-proof-lab",
+      "focus": {
+        "x": 266,
+        "y": 263.53125,
+        "width": 1134,
+        "height": 736.625
+      },
+      "url": "https://facet-near.vercel.app/lab",
+      "captured_at": "2026-11-02T11:47:49.097Z",
+      "file": "docs/demo-captures/12-proof-lab.jpg",
+      "sha256": "d10e99ab78000af51ecc5a129ad6ff1067174e13f8ccf79a3107ab8bc5597ca7"
+    },
+    {
+      "name": "13-revocation-consent",
+      "focus": {
+        "x": 812.296875,
+        "y": 744.03125,
+        "width": 562.703125,
+        "height": 128.296875
+      },
+      "url": "https://facet-near.vercel.app/vault",
+      "captured_at": "2026-11-02T11:47:53.576Z",
+      "file": "docs/demo-captures/13-revocation-consent.jpg",
+      "sha256": "0f0c9f9dc2472b499ed4ff46030310f3e3d39d6e71d3572ce1e7d5629ecd3b56"
+    },
+    {
+      "name": "14-revoked-proof",
+      "focus": {
+        "x": 292,
+        "y": 752.234375,
+        "width": 1082,
+        "height": 225
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-02T11:48:00.379Z",
+      "file": "docs/demo-captures/14-revoked-proof.jpg",
+      "sha256": "27572c840154ad2537a4a86fb21f9377484d3372c6a6057135b18a90660d1305"
+    }
+  ]
+}
