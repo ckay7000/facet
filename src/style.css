@@ -14,3 +14,6 @@
 .demo-panel{padding:20px}.demo-player{display:block;width:100%;aspect-ratio:16/9;border-radius:14px;background:#19243b}.demo-links{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}
 
 @media(max-width:600px){.hero-buttons{flex-wrap:wrap}}
+
+.use-case-story{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);scroll-margin-top:24px}.use-case-story h2{font-family:'Manrope Variable',sans-serif;font-size:34px;line-height:1.2;letter-spacing:-1px;margin:18px 0}.use-case-story>p{max-width:900px;font-size:14px;line-height:1.8;color:var(--muted)}.use-case-story .button{margin-top:14px}
+@media(max-width:600px){.use-case-story h2{font-size:27px}.use-case-story>p{font-size:13px}.use-case-story .eyebrow{font-size:9px;letter-spacing:1px}}

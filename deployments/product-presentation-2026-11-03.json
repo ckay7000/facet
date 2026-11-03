@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-03T20:43:36.935094+00:00",
+  "checked_at": "2026-11-03T21:03:10.839151+00:00",
   "project": "facet",
   "frontend_build": "passed",
   "repo_text_event_mentions": 0,
@@ -12,6 +12,8 @@
       320
     ],
     "browser_errors": [],
-    "scope": "Read-only frontend pages and preserved video metadata. Backend transactions were not repeated."
-  }
+    "scope": "Read-only frontend descriptions, detailed use cases and preserved video metadata. Backend transactions were not repeated."
+  },
+  "detailed_example": "passed",
+  "technology_descriptions": "updated"
 }

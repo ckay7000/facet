@@ -2,19 +2,25 @@
 
 Facet is an application that lets people prove selected facts from an issuer-signed credential without sharing the whole document.
 
-You keep the original in an encrypted vault and approve which claims a recipient can see. The recipient checks the proof and the credential’s current status, while the undisclosed fields stay private.
+Original documents and the holder key stay in a password-protected **AES-256-GCM encrypted vault** on the device. A salted document fingerprint can be anchored as a holder-bound NEAR NFT without publishing the file. Uploaded originals are clearly marked self-recorded and unverified.
+
+For issued credentials, **BBS selective-disclosure proofs** let the holder reveal only approved signed fields. A holder signature binds the disclosure to its verification request. The recipient checks the proof and the live NEAR registry for ownership, issuer status, expiry, revocation and request reuse.
+
+The holder can lock the vault, restore it from an encrypted backup and revoke a credential to stop future verification. A proof lab demonstrates how tampered claims, substituted holders, excess disclosure, expired credentials and reused requests are rejected.
 
 [Try the app](https://facet-near.vercel.app) · [Watch the demo](https://facet-near.vercel.app/media/facet-demo-20261103.mp4) · [New to this repo? Start here](docs/REPO_GUIDE.md)
 
 Fresh hosted feature checks passed on November 3, 2026. [What the recording shows and what was tested](docs/DEMO_2026-11-03.md) · [Public receipts and check evidence](deployments/demo-2026-11-03.json).
 
-## An example you can try
+## Example: prove course completion without sharing the certificate
 
-You completed a course. A hiring team needs to know **which course** and **whether you completed it**. It does not need your grade, student number or the original certificate.
+A learner receives a signed training credential from the fictional **Facet Test Academy**. A hiring team needs the course name and completion status, but does not need the learner’s name, grade or original certificate.
 
-In Facet, you approve those two fields. The hiring team checks the proof in another browser and sees just the approved claims and required public identifiers. Your name and score remain hidden.
+The learner opens the encrypted vault, reviews a signed request for those two claims and approves the disclosure. Facet derives a BBS proof that preserves the issuer’s signature while hiding the other fields. The holder signs the approved presentation, and the hiring team imports it in another browser without needing the vault password or original document.
 
-The demo learner and **Facet Test Academy** are fictional. The cryptographic signatures and NEAR testnet transactions are real. Real institution onboarding is future work.
+Verification checks the cryptographic proof, holder binding and current NEAR registry state. It shows the approved course and completion claims alongside required public identifiers. Reusing the same request is rejected. Changing a disclosed claim invalidates the proof; revoking the credential blocks subsequent verification.
+
+The learner can lock the vault and restore the documents and holder key from an encrypted backup using the original password. Uploading a separate personal file creates an unverified fingerprint record, rather than an issuer-signed credential. The academy and learner are fictional; the cryptographic signatures and testnet receipts are real.
 
 ![Facet's private credential workspace](docs/images/desktop-home.png)
 
