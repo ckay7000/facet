@@ -12,7 +12,7 @@ export async function captureFacet(browser: any) {
     await shot('01-vault', '.vault-gate');
     await page.getByLabel('Vault password', { exact: true }).fill(password); await page.getByLabel('Confirm password').fill(password); await page.getByRole('button', { name: 'Create vault', exact: true }).click(); await page.getByLabel('Upload a private document').waitFor();
     stage = 'record private document';
-    await page.getByLabel('Upload a private document').setInputFiles({ name: 'training-notes.txt', mimeType: 'text/plain', buffer: Buffer.from('Fictional training notes for the Facet hackathon demonstration. This original file should remain on the holder device.') });
+    await page.getByLabel('Upload a private document').setInputFiles({ name: 'training-notes.txt', mimeType: 'text/plain', buffer: Buffer.from('Fictional training notes for the Facet product demonstration. This original file should remain on the holder device.') });
     await page.getByRole('heading', { name: 'training-notes', exact: true }).waitFor(); await shot('02-encrypted-original', '.file-preview');
     const recorded = await clickResponse(page, 'Create private NFT', 'action'); assert.equal(recorded.record.kind, 'self_recorded'); evidence.push({ name: 'self-recorded document', token_id: recorded.record.token_id, transaction: recorded.transaction });
     await page.getByText('Self-recorded · unverified', { exact: true }).first().waitFor(); await shot('03-self-recorded-nft', '.detail-panel');

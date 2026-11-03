@@ -1,0 +1,78 @@
+{
+  "schema": "product.feature-demo.v1",
+  "project": "facet",
+  "status": "passed",
+  "checked_at": "2026-11-03T19:37:00.767Z",
+  "website": "https://facet-near.vercel.app",
+  "video": {
+    "url": "https://facet-near.vercel.app/media/facet-demo-20261103.mp4",
+    "sha256": "61b0305c0629861af95312f132179adda78db5b9f444505a8d6b7178e5fa49ee",
+    "bytes": 903047,
+    "capture": "primary browser from actual hosted feature run",
+    "audio": "none",
+    "captions": "English"
+  },
+  "application_tests": 17,
+  "checks": [
+    "Landing page and interactive disclosure preview render",
+    "Home fits desktop, 390px and 320px widths",
+    "A new encrypted vault opens without a blockchain wallet",
+    "A real file becomes an unverified NFT while the original stays local and downloads unchanged",
+    "IndexedDB contains an encrypted envelope rather than plaintext files or credentials",
+    "Owner consent creates a real proof with requested fields and excludes hidden name, score and original file",
+    "Backend independently accepts the proof and confirms a live NEAR verification receipt",
+    "Reusing the same verification request is rejected",
+    "Consent history preserves the successful receipt after a rejected replay",
+    "Eight real cryptographic lab checks pass, including altered fields, holder substitution and excess disclosure",
+    "Lock removes private content and an incorrect password cannot unlock it",
+    "Encrypted backup restores the documents and holder on a separate browser",
+    "Owner-authorized live revocation blocks exported credential proofs",
+    "Vault and verification desk fit 390px and 320px mobile viewports",
+    "Malformed proof input is refused before verification",
+    "API requests never receive the vault password, original file, encoded original or private filename",
+    "No browser exceptions in the full tested workflow"
+  ],
+  "evidence": [
+    {
+      "name": "self-recorded mint",
+      "token_id": "facet_c0b81b7b4239d6a7695aad3c70b74d06",
+      "transaction": {
+        "hash": "D3ZKKDBTb4FEveEZNrfDjuSJtJ3mtB9irR8idvJarjoM",
+        "success": true,
+        "method": "mint_record"
+      }
+    },
+    {
+      "name": "demo issuance",
+      "token_id": "facet_08d10005afd8a03f2273a2fda2894ed4",
+      "transaction": {
+        "hash": "FhGtXEBGpavLdZTdQUPVhKSkggoqkGTG8RnWYKExLAoT",
+        "success": true,
+        "method": "mint_record"
+      }
+    },
+    {
+      "name": "accepted proof",
+      "transaction": {
+        "hash": "91ANznTJ6ArkaZKnP5hHHLiASv6Hku1MkmoLo66y2MuV",
+        "success": true,
+        "method": "record_verification"
+      },
+      "proof_hash": "0647062b52b916564ce424fe7aed00dca5bd2a4f1c55a063a8d07bc373f398cd"
+    },
+    {
+      "name": "live revocation",
+      "transaction": {
+        "hash": "3VdD5a9b3zvaxp32DFhBxDLZ2VK8d441y44VpARffNDQ",
+        "success": true,
+        "method": "revoke_record"
+      }
+    }
+  ],
+  "browser_errors": [],
+  "limits": [
+    "Fictional test data; real NEAR testnet transactions.",
+    "Only primary-browser video is published; second-browser recovery is covered by test evidence.",
+    "Passing functional checks do not constitute a security audit."
+  ]
+}

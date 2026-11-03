@@ -1,10 +1,12 @@
 # Facet
 
-**Prove what matters. Keep the rest private.**
+Facet is an application that lets people prove selected facts from an issuer-signed credential without sharing the whole document.
 
-Facet lets you prove selected facts from a signed credential without handing over your entire document.
+You keep the original in an encrypted vault and approve which claims a recipient can see. The recipient checks the proof and the credential’s current status, while the undisclosed fields stay private.
 
-[Try the app](https://facet-near.vercel.app) · [Watch the demo](https://facet-near.vercel.app/media/facet-demo.mp4) · [New to this repo? Start here](docs/REPO_GUIDE.md)
+[Try the app](https://facet-near.vercel.app) · [Watch the demo](https://facet-near.vercel.app/media/facet-demo-20261103.mp4) · [New to this repo? Start here](docs/REPO_GUIDE.md)
+
+Fresh hosted feature checks passed on November 3, 2026. [What the recording shows and what was tested](docs/DEMO_2026-11-03.md) · [Public receipts and check evidence](deployments/demo-2026-11-03.json).
 
 ## An example you can try
 
@@ -48,8 +50,8 @@ The selective-disclosure mathematics, called **BBS proofs**, runs in the browser
 Use **Node 24** and npm. Tests and the build require no private keys.
 
 ```bash
-git clone https://github.com/NSEVEjk0/facet-near.git
-cd facet-near
+git clone https://github.com/NSEVEjk0/facet.git
+cd facet
 npm ci
 npm test
 npm run build
@@ -67,12 +69,10 @@ Public holder and token IDs, issuer, expiry, revocation and salted fingerprints 
 
 This is a testnet prototype, not an audited identity service. A compromised device, website or relay remains a trust risk. Requester names are self-declared; real issuer onboarding and full W3C credential interoperability are future work. [Detailed limits](docs/ENGINEERING.md).
 
-## NEAR HACKATHON disclosure
+## Project history and attribution
 
-Built with AI assistance during the eligible October 19–November 14, 2026 window. Facet reuses the author’s Kiosk build setup, deployment/testing patterns and NEAR SDK tooling. Kiosk is not a separate entry. React, Vite, NEAR SDK JS, Noble/Scure and Digital Bazaar’s BBS implementation supply the listed libraries; dependency versions are pinned. Credential-specific vault, consent, proof, registry and verifier behavior is the Facet implementation.
+Built with AI assistance in October and November 2026. Facet reuses the author’s Kiosk build setup, deployment/testing patterns and NEAR SDK tooling. The reused tooling and credential-specific implementation are disclosed here. React, Vite, NEAR SDK JS, Noble/Scure and Digital Bazaar’s BBS implementation supply the listed libraries; dependency versions are pinned. Credential-specific vault, consent, proof, registry and verifier behavior is the Facet implementation.
 
-The author’s other independent entry is **[Sealwork](https://github.com/NSEVEjk0/sealwork)**: confidential financial-agent work with conditional escrow payment. Facet handles credential disclosure; Sealwork handles paid task execution. Their contracts, deployments and application flows are separate.
-
-Proposed tracks: **`nfts`, `privacy`**. [Rule-by-rule alignment](docs/HACKATHON_ALIGNMENT.md) · [Human submission checklist](docs/SUBMISSION_CHECKLIST.md) · [Dated official HACKATHON.md](docs/HACKATHON.md). Deadline: **November 14, 2026 at 23:59 UTC**; re-read the [live guide](https://nearhackathon.com/HACKATHON.md) before submitting.
+[Sealwork](https://github.com/NSEVEjk0/sealwork), [Accord](https://github.com/NSEVEjk0/accord) and [Kiosk](https://github.com/NSEVEjk0/kiosk) are separate products with their own workflows and deployments.
 
 [MIT license](LICENSE). Third-party licenses apply to their respective dependencies, including the BBS package’s BSD-3-Clause license.

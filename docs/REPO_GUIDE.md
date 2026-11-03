@@ -44,7 +44,6 @@ The NFT is a public **credential record**, not a container exposing your documen
 | Understand possible applications | [Use cases and limits](USE_CASES.md) |
 | Understand the proof and trust assumptions | [Engineering](ENGINEERING.md) |
 | Run or modify the app | [Development](DEVELOPMENT.md) |
-| Prepare for the hackathon | [Alignment](HACKATHON_ALIGNMENT.md), [official guide](HACKATHON.md), [human checklist](SUBMISSION_CHECKLIST.md) |
 
 ## Where the code lives
 

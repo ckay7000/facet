@@ -1,9 +1,9 @@
 {
-  "name": "facet-near",
+  "name": "facet",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Private documents and selectively disclosed credentials on NEAR testnet.",
+  "description": "Facet lets people prove selected facts from signed credentials while keeping the original document and undisclosed fields private.",
   "engines": {
     "node": "24.x"
   },

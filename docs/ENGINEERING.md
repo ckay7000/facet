@@ -43,7 +43,7 @@ Requesting-party labels are self-declared; their package signature authenticates
 
 The custom demo credential schema is not a complete interoperable W3C VC implementation or a numerical predicate proof system. BBS proves selected signed fields while hiding the other messages. It does not independently prove a degree is genuine, or prove an age threshold from an arbitrary uploaded ID.
 
-There is no password recovery. Browser storage may be cleared. Encrypted backups remain susceptible to offline password guessing; use a strong, unique password. Compromised devices or injected application code can access an unlocked vault. This is a testnet hackathon prototype, not an audited production credential service.
+There is no password recovery. Browser storage may be cleared. Encrypted backups remain susceptible to offline password guessing; use a strong, unique password. Compromised devices or injected application code can access an unlocked vault. This is a testnet prototype, not an audited production credential service.
 
 ## Run locally
 

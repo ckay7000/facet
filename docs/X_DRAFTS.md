@@ -1,7 +1,9 @@
-# X demo draft — adapt and publish yourself
+# Facet product post draft
 
-Built at NEAR HACKATHON: Facet lets a holder prove course completion without sharing the whole certificate. Watch the owner approve two fields, a separate verifier check them, and live revocation block a fresh proof. @NEARProtocol #NEARHackathon
+Facet lets people prove selected facts from signed credentials while keeping their original documents private.
 
-Attach `facet-demo.mp4` (or real app screenshots), and add a reply linking https://facet-near.vercel.app and https://github.com/NSEVEjk0/facet-near. Ask: “What credential would you want to verify with fewer disclosed fields?”
+Demo: https://facet-near.vercel.app/media/facet-demo-20261103.mp4
 
-Use your own voice and explain that the issuer is fictional and the application runs on testnet. This file is a social draft, not an application answer. No post has been published.
+App: https://facet-near.vercel.app
+
+Adapt this draft in your own words before posting.

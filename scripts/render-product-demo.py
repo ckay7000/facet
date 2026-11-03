@@ -16,9 +16,9 @@ parser.add_argument('--model',type=Path,default=ROOT/'reports/demo/tts-model/kok
 parser.add_argument('--voices',type=Path,default=ROOT/'reports/demo/tts-model/voices-v1.0.bin')
 parser.add_argument('--mode',choices=['all','narrate','render'],default='all')
 args=parser.parse_args()
-story=json.loads((ROOT/'scripts/hackathon-demo-storyboard.json').read_text())
+story=json.loads((ROOT/'scripts/product-demo-storyboard.json').read_text())
 scenes=story['scenes']; settings=story['narration']; base=story['base']; theme=story['theme']
-WORK=ROOT/'reports/hackathon-demo';WORK.mkdir(parents=True,exist_ok=True)
+WORK=ROOT/'reports/product-demo';WORK.mkdir(parents=True,exist_ok=True)
 OUT=ROOT/'public/media';OUT.mkdir(parents=True,exist_ok=True)
 FFMPEG=imageio_ffmpeg.get_ffmpeg_exe(); W,H,FPS=1920,1080,24
 FONT=ROOT/'docs/video-tools/Manrope.ttf'
@@ -105,7 +105,7 @@ def cropbox(shot,zoom):
 def frame(index,elapsed,cue=None):
  scene=scenes[index];im=Image.new('RGB',(W,H),theme['background']);d=ImageDraw.Draw(im)
  d.text((48,28),story['name'].lower()+'.',font=ft(38,True),fill=theme['accent'])
- d.text((270,40),'NEAR HACKATHON 2026  /  REAL TESTNET WALKTHROUGH',font=ft(18,True),fill=theme['ink'])
+ d.text((270,40),'REAL NEAR TESTNET WALKTHROUGH',font=ft(18,True),fill=theme['ink'])
  d.text((1450,40),f'STEP {index+1:02} / {len(scenes):02}',font=ft(18,True),fill=theme['ink'])
  d.line((48,98,1872,98),fill=theme['soft'],width=2)
  y=drawtext(d,(48,153),scene['title'],42,theme['ink'],330,True,12)

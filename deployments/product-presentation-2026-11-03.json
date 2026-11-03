@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-11-03T20:43:36.935094+00:00",
+  "project": "facet",
+  "frontend_build": "passed",
+  "repo_text_event_mentions": 0,
+  "local_markdown_links": "passed",
+  "responsive_video_pages": {
+    "status": "passed",
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "browser_errors": [],
+    "scope": "Read-only frontend pages and preserved video metadata. Backend transactions were not repeated."
+  }
+}
