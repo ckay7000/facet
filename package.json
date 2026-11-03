@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Facet lets you prove selected credential facts using BBS proofs, keep originals in an AES-encrypted vault, and check ownership, expiry and revocation on NEAR.",
+  "description": "Facet is an application that lets people prove facts from signed credentials without sharing their full documents.",
   "engines": {
     "node": "24.x"
   },

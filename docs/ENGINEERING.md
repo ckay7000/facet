@@ -9,7 +9,7 @@ Facet lets a person preserve a document privately, then prove selected issuer-si
 ## Try the working flow
 
 1. Open **My vault**, create a strong password, and export an encrypted backup.
-2. Upload a real document and select **Create private NFT**. It is explicitly **self-recorded and unverified**. The original stays on your device; NEAR receives a salted fingerprint and holder ID.
+2. Upload a fictional document and select **Create private NFT**. It is explicitly **self-recorded and unverified**. The original stays on your device; NEAR receives a salted fingerprint and holder ID.
 3. Select **Issue demo credential**. Facet Test Academy issues a fictional certificate with a real BBS signature, anchored to a holder-bound NEAR NFT.
 4. At the verification desk, create a request for course and completion status. A separate verifier can export a request or copy its link and send it to the holder.
 5. The holder imports the request, previews revealed and hidden fields, and approves a selective-disclosure proof.
@@ -29,7 +29,6 @@ Facet lets a person preserve a document privately, then prove selected issuer-si
 - Independent backend verification against issuer keys and live finality reads. Onchain receipt recording rechecks expiry, revocation, issuer suspension and nonce reuse.
 - Owner-signed minting/revocation challenges; the backend rejects arbitrary action fields and original-file uploads.
 - Consent history, downloadable proof packages, live transaction links, search and a cryptographic attack lab.
-- Responsive cobalt/lavender/slate visual identity, separately deployed from Kiosk and Sealwork.
 
 ## Trust and privacy boundaries
 
@@ -88,7 +87,6 @@ This performs read-only cryptographic and chain checks. It does not mint or reco
 
 Deployment helpers create dedicated testnet accounts and an independent Vercel project. They read existing private credentials without printing them. Testnet relays are funded and bounded by the daily mint cap of 40 and collection cap of 500. A local vault allows 8 documents, 5 MB per document and approximately 20 MB total.
 
-The temporary authenticated hosted browser endpoint and its credential are removed before the final release.
 
 ## References
 

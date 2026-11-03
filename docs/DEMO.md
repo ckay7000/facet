@@ -1,11 +1,19 @@
-# Facet product demonstration
+# Facet demo
 
-[Watch the feature demo](https://facet-near.vercel.app/media/facet-demo-20261103.mp4) · [Open the app](https://facet-near.vercel.app) · [Checks and provenance](DEMO_2026-11-03.md)
+[Watch the demo](https://facet-near.vercel.app/media/facet-demo-20261103.mp4) · [Open the app](https://facet-near.vercel.app) · [Public test evidence](../deployments/demo-2026-11-03.json)
 
-The current recording shows the hosted application using fictional inputs and real NEAR testnet execution. Follow the complete workflow in the [README](../README.md). The [verification evidence](../deployments/demo-2026-11-03.json) distinguishes what was shown from additional checks performed during the same run.
+The captioned video shows the hosted application. Its fingerprint, size and feature-check results are recorded in the linked evidence file.
 
-## Capture and rendering source
+## What was verified
 
-The repository includes `scripts/capture-product-demo.ts`, `scripts/product-demo-storyboard.json` and `scripts/render-product-demo.py` for the earlier narrated capture pipeline. The current feature recording has captions and no narration. No new recording is required to use or review the app.
+The primary-browser recording shows the local encrypted vault, an unverified self-recorded NFT, a signed fictional training credential, owner-approved BBS disclosure, successful proof verification, replay refusal, the proof lab and vault locking.
 
-Store authenticated captures and private recovery files outside version control. Never publish a password, signing seed or recovery capability with a demonstration.
+During the same run, an encrypted backup restored the vault in another browser. That restored holder revoked the credential in a real transaction, and subsequent verification rejected it. Those second-browser actions are recorded in the linked test evidence; they are not part of this primary-browser video.
+
+Desktop, 390px and 320px layout checks passed after fixing the mobile hero buttons. The workflow checked ciphertext in IndexedDB and that API requests did not contain the vault password, original document bytes or private filename. The issuer and training claims are fictional. Cryptographic proofs and NEAR receipts are real; institution onboarding remains future work.
+
+## Reproduce the features
+
+Follow the complete workflow in the [README](../README.md). The checked-in browser helpers are `scripts/browser-scenario.ts`. Live workflows require available demo sponsorship or your own isolated testnet configuration. Application tests and frontend builds need no private keys.
+
+Live workflows use fictional inputs and real NEAR testnet transactions. Application tests and frontend builds need no private keys.
