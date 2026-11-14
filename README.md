@@ -21,8 +21,6 @@ An application can verify course completion without receiving the learner's name
 
 NEAR authorizes each private execution. An independent agent client can use an existing grant while the holder's local vault is locked.
 
-[Submission wording: how Facet uses NEAR](docs/SUBMISSION.md).
-
 ## What is stored where
 
 | Browser encrypted vault | Optional TEE copy | Public NEAR records |
