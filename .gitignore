@@ -4,6 +4,7 @@ dist/
 .env*
 .vercel/
 contracts/*/build/
+workers/target/
 contracts/*/node_modules/
 test-results/
 playwright-report/

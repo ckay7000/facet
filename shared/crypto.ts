@@ -31,13 +31,15 @@ export function signJson(value: unknown, seed: string) { return encode(ed25519.s
 export function verifyJson(value: unknown, signature: string, publicKey: string) { try { return ed25519.verify(decode(signature), utf8(canonical(value)), unhex(publicKey)); } catch { return false; } }
 export function validRequestShape(value: unknown): value is SignedRequest {
   if (!value || typeof value !== 'object') return false; const r = value as SignedRequest, p = r.payload;
+  if (Object.keys(r).length !== 2 || Object.keys(r).some(k => !['payload', 'signature'].includes(k)) || !p || typeof p !== 'object' || Object.keys(p).length !== 7 || Object.keys(p).some(k => !['version', 'nonce', 'audience', 'purpose', 'fields', 'created_at', 'expires_at'].includes(k))) return false;
   return !!p && p.version === 'facet-request-v1' && /^[a-f0-9]{32}$/.test(p.nonce) && typeof p.audience === 'string' && p.audience.length >= 2 && p.audience.length <= 64 && typeof p.purpose === 'string' && p.purpose.length <= 160 && Array.isArray(p.fields) && p.fields.length > 0 && p.fields.length <= FIELDS.length && new Set(p.fields).size === p.fields.length && p.fields.every(id => FIELDS.some(f => f.id === id)) && Number.isSafeInteger(p.created_at) && Number.isSafeInteger(p.expires_at) && p.expires_at > p.created_at && p.expires_at - p.created_at <= 15 * 60 * 1000 && typeof r.signature === 'string' && r.signature.length < 160;
 }
 export function presentationHash(presentation: Presentation) { return hash(canonical(presentation)); }
 export function validPresentationShape(value: unknown): value is Presentation {
   if (!value || typeof value !== 'object') return false;
   const p = value as Presentation;
-  return p.version === 'facet-presentation-v1' && /^facet_[a-f0-9]{32}$/.test(p.token_id) && validRequestShape(p.request) && typeof p.proof === 'string' && p.proof.length > 100 && p.proof.length < 5000 && typeof p.holder_signature === 'string' && p.holder_signature.length < 160 && Array.isArray(p.disclosed) && p.disclosed.length <= 11 && p.disclosed.every(d => d && Number.isInteger(d.index) && d.index >= 0 && d.index <= 10 && typeof d.value === 'string' && d.value.length < 512);
+  if (Object.keys(p).length !== 6 || Object.keys(p).some(k => !['version', 'token_id', 'request', 'proof', 'disclosed', 'holder_signature'].includes(k))) return false;
+  return p.version === 'facet-presentation-v1' && /^facet_[a-f0-9]{32}$/.test(p.token_id) && validRequestShape(p.request) && typeof p.proof === 'string' && p.proof.length > 100 && p.proof.length < 5000 && typeof p.holder_signature === 'string' && p.holder_signature.length < 160 && Array.isArray(p.disclosed) && p.disclosed.length <= 11 && p.disclosed.every(d => d && Object.keys(d).length === 2 && Object.keys(d).every(k => ['index', 'value'].includes(k)) && Number.isInteger(d.index) && d.index >= 0 && d.index <= 10 && typeof d.value === 'string' && d.value.length < 512);
 }
 export function holderStatement(presentation: Omit<Presentation, 'holder_signature'> | Presentation) { return { version: presentation.version, token_id: presentation.token_id, request: presentation.request, proof: presentation.proof, disclosed: presentation.disclosed }; }
 export async function derivePresentation(credential: Credential, request: SignedRequest, seed: string): Promise<Presentation> {

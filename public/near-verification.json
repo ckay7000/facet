@@ -1,0 +1,367 @@
+{
+  "application": "Facet",
+  "status": "partial",
+  "prototype": true,
+  "independently_audited": false,
+  "network": "testnet",
+  "checked_at": "2026-11-14T14:51:04.938Z",
+  "url": "https://facet-near.vercel.app",
+  "main_contract_id": "credentials.facet-lab-1102.testnet",
+  "project_id": "facet-lab-1102.testnet/facet-vault",
+  "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29",
+  "fixture": "All documents and issuer claims are fictional. NEAR transactions and OutLayer executions are real.",
+  "unit_tests": {
+    "status": "passed",
+    "checked_at": "2026-11-14T14:43:14.663Z",
+    "tests": 31,
+    "command": "npm test"
+  },
+  "worker_interoperability": {
+    "status": "passed",
+    "checked_at": "2026-11-14T14:46:01.459Z",
+    "checks": [
+      "Real JavaScript BBS packets pass Rust signature and scope validation",
+      "Rust agent delivery decrypts in JavaScript and independently verifies its BBS proof",
+      "Wrong recipient keys and substituted job IDs refuse decryption",
+      "Rust owner delivery restores the original copy and holder identity"
+    ],
+    "rust_tests": 2
+  },
+  "native_near_and_tee": {
+    "status": "failed",
+    "checked_at": "2026-11-14T14:41:21.138Z",
+    "checks": [
+      "Live NEAR configuration names the exact published worker and dedicated agent",
+      "The private callback refuses a direct call without an authenticated promise result",
+      "Holder signature binds the dedicated owner wallet on NEAR",
+      "NEAR rejects a wrong holder, unauthorized relay and substituted worker before private storage",
+      "A real OutLayer execution validates and seals the encrypted document/credential copy",
+      "Repeating a completed signed copy request does not spend a new ingress deposit",
+      "Consumed encrypted ingress is deleted while the sealed project copy remains available",
+      "Browser-compatible BBS presentations persist under a two-execution NEAR permission",
+      "A different agent or invalid request capability cannot consume the permission",
+      "Separate TEE executions read the saved credential and deliver only approved, verifiable BBS claims",
+      "Replaying the same agent job retrieves its receipt without increasing usage",
+      "NEAR refuses a third execution after the allowance is used",
+      "Only the holder can revoke; a revoked permission refuses future TEE dispatch",
+      "An actually expired onchain grant refuses further execution"
+    ],
+    "jobs": [
+      {
+        "id": "85f1e0717b1cf89ebd67fdb2ccacd73a",
+        "kind": "copy",
+        "state": "ready",
+        "request_id": "45669",
+        "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29"
+      },
+      {
+        "id": "05ae93f24d38770c6b0954744d62fef1",
+        "kind": "grant",
+        "state": "ready",
+        "request_id": "45912",
+        "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29"
+      },
+      {
+        "id": "ee5c6120a1d77c9a82601680227718f3",
+        "kind": "use",
+        "state": "ready",
+        "request_id": "45921",
+        "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29"
+      },
+      {
+        "id": "b6d0b8a0e694a562ffbd79acc9e8d3e3",
+        "kind": "use",
+        "state": "ready",
+        "request_id": "45929",
+        "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29"
+      },
+      {
+        "id": "245efe90559f04cd36dacae68f56b964",
+        "kind": "grant",
+        "state": "ready",
+        "request_id": "45937",
+        "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29"
+      },
+      {
+        "id": "8ba47d1cbc14853257e1914ef2e8f5c9",
+        "kind": "grant",
+        "state": "ready",
+        "request_id": "45947",
+        "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29"
+      }
+    ],
+    "transactions": [
+      {
+        "method": "on_private_execution",
+        "hash": "JAdX2Ni2SWHiJ9oHcStvnFUZod4LqiwvgPzJwyYBosdW",
+        "success": false
+      },
+      {
+        "method": "bind_holder_wallet",
+        "hash": "4nJxxbfvvM9SJkUZamsEjDziFfnfm1RYrbxL8Ju7vDYn",
+        "success": true
+      },
+      {
+        "method": "reserve_private",
+        "hash": "FQ14ByeBjEFayb89atww1EPgK2GCq5mwDhVh33w5EogB",
+        "success": false
+      },
+      {
+        "method": "reserve_private",
+        "hash": "3f1FN81YDGNHyqPMPQWhTwJ35ESgEG52XdmBpyg8jPYe",
+        "success": false
+      },
+      {
+        "method": "reserve_private",
+        "hash": "2aHq8GtZZzbCtrMvgQKSxGMjNTun7FvVJksAgddSyhB4",
+        "success": false
+      },
+      {
+        "hash": "3z9y7EsHEjmQN59MdtR3FAmhxUuZpxFGYi6m6j8q5BZT",
+        "method": "execute_private",
+        "success": true
+      },
+      {
+        "method": "execute_agent",
+        "hash": "dqRiF2EjQvoQkhin5AqtZyWKicnMbqAnjRcmYjRGmJ9",
+        "success": false
+      },
+      {
+        "method": "execute_agent",
+        "hash": "9RwCwPPu6o3E9rJeNXTaseqez7SK61m9rhKCKDvCr57x",
+        "success": false
+      },
+      {
+        "hash": "3zYDHFsunFvrDfi5NV7nepH8b47iXSuNyf8eKqmib8y4",
+        "method": "execute_agent",
+        "success": true
+      },
+      {
+        "method": "record_verification",
+        "hash": "DcfPid3bw6ni26utvMkSact7Xg74zLMgJxrx8y2cvpvz",
+        "success": true
+      },
+      {
+        "hash": "4ERsGJncY62mwPotUdpnHqsWireGNgxUv9QEAYySGzQg",
+        "method": "execute_agent",
+        "success": true
+      },
+      {
+        "method": "record_verification",
+        "hash": "c4VexrHqJaXLD5T9feXUwQcrraFJQgY32BQ7Kv7aYbJ",
+        "success": true
+      },
+      {
+        "method": "execute_agent",
+        "hash": "7ppnhioYFncG1GdehvMVeH5UUPL6jfpiJrYa1fkbTDRq",
+        "success": false
+      },
+      {
+        "hash": "B2t2HysorziG7xof2NVGZY99JfHpoi4JsQZVsVHoARtX",
+        "method": "execute_private",
+        "success": true
+      },
+      {
+        "method": "revoke_agent",
+        "hash": "Bt2WZpEy8DoNDxjwD2zGcEoaRBMKAaAHk4berNGF1o5A",
+        "success": false
+      },
+      {
+        "method": "revoke_agent",
+        "hash": "GPjPY1pWHaYV5FpXLb5xFM4QFsza52PJpoXD4v4zYGax",
+        "success": true
+      },
+      {
+        "method": "execute_agent",
+        "hash": "3oXGsdGmVjaq5pWfuqt4i8JJCpKynmBE1csRc4KUTvLw",
+        "success": false
+      },
+      {
+        "hash": "B6Z97ipYfjYj8QhtY59r8fjBftGeMtLcqNLF993ShD4j",
+        "method": "execute_private",
+        "success": true
+      },
+      {
+        "method": "execute_agent",
+        "hash": "2B43Yjxo6Df5nc2ZG2HBa9VhXjpqLP2pRUqnbcZ4ZxCE",
+        "success": false
+      },
+      {
+        "method": "recover_private_copy",
+        "hash": "ATM6RGq4MNfzsowAbTcys9SjN7LbV6hq5g4vdVCDJQ9b",
+        "success": false
+      }
+    ],
+    "reused_copy_job": "85f1e0717b1cf89ebd67fdb2ccacd73a",
+    "contract_id": "facet-checks-1102.testnet",
+    "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29",
+    "incomplete_operation": {
+      "job_id": "590d4621e26d52b7046f0d6d640cf10f",
+      "kind": "recover",
+      "state": "failed",
+      "error_code": "private_execution_failed",
+      "transaction_hash": "6mVRvx9E26wVfTCoXPWUgcRbGRFHxXReXs6dhXA8FDX7",
+      "outlayer_request_id": "45983",
+      "provider_job_id": 108961,
+      "provider_status": "failed",
+      "provider_error": "Execution request not found during late settlement",
+      "provider_settlement_transaction": "8vkBvR2a2d8a3i29QBKyuedYzBsmPCvPqj13J8h3xuXv",
+      "independently_decrypted": false,
+      "checked_at": "2026-11-14T14:47:00.800Z"
+    },
+    "stopped_at": "Wallet recovery settlement",
+    "reason": "The RPC timed out waiting for FINAL while the recovery transaction was INCLUDED_FINAL. Completed checks and the separate successful recovery test remain evidence; the complete native suite did not pass."
+  },
+  "separately_verified_recovery": {
+    "status": "passed",
+    "checked_at": "2026-11-14T14:30:06.774Z",
+    "contract_id": "facet-checks-1102.testnet",
+    "original_copy_job": "85f1e0717b1cf89ebd67fdb2ccacd73a",
+    "job_id": "23fefc3008791f0dcb42124157553109",
+    "transaction_hash": "134M984mW1toXJ9LyqHexfTGkJPk34P3NrXFa44TmJan",
+    "outlayer_request_id": "45840",
+    "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29",
+    "checks": [
+      "The bound NEAR wallet recovers the original document and holder identity from the saved TEE copy",
+      "Recovered file bytes and packet fingerprint match their NEAR record",
+      "A different recipient key cannot decrypt the live recovery delivery",
+      "NEAR refuses another holder’s revocation signature and accepts the credential owner’s signature"
+    ],
+    "transactions": [
+      {
+        "method": "revoke_agent",
+        "hash": "8ppAuvFDUDcZwcwRN7ShrLtCYwwd1CLKCDkPZsHBKHXP",
+        "success": false
+      },
+      {
+        "method": "revoke_agent",
+        "hash": "93ZLPixefmThMUv4SB72ASLptzQdB45b97imN6AHJsWB",
+        "success": true
+      }
+    ]
+  },
+  "browser": {
+    "local_vault_and_direct_bbs": {
+      "status": "passed",
+      "checked_at": "2026-11-14T13:35:15.186Z",
+      "checks": [
+        "Landing page and interactive disclosure preview render",
+        "Home fits desktop, 390px and 320px widths",
+        "A new encrypted vault opens without a blockchain wallet",
+        "A real file becomes an unverified NFT while the original stays local and downloads unchanged",
+        "IndexedDB contains an encrypted envelope rather than plaintext files or credentials",
+        "Owner consent creates a real proof with requested fields and excludes hidden name, score and original file",
+        "Backend independently accepts the proof and confirms a live NEAR verification receipt",
+        "Reusing the same verification request is rejected",
+        "Consent history preserves the successful receipt after a rejected replay",
+        "Eight real cryptographic lab checks pass, including altered fields, holder substitution and excess disclosure",
+        "Lock removes private content and an incorrect password cannot unlock it",
+        "Encrypted backup restores the documents and holder on a separate browser",
+        "Owner-authorized live revocation blocks exported credential proofs",
+        "Vault and verification desk fit 390px and 320px mobile viewports",
+        "Malformed proof input is refused before verification",
+        "API requests never receive the vault password, original file, encoded original or private filename",
+        "No browser exceptions in the full tested workflow"
+      ],
+      "evidence": [
+        {
+          "name": "self-recorded mint",
+          "token_id": "facet_b9dc39bea26f42bdbf41343860e50c6f",
+          "transaction": {
+            "hash": "BgUAPv7ipVMRY7nNqTX2RMnt59qosnM4tXgbu97i3Aez",
+            "success": true,
+            "method": "mint_record"
+          }
+        },
+        {
+          "name": "demo issuance",
+          "token_id": "facet_6bbe85e74e21704d4195a6e8501fa079",
+          "transaction": {
+            "hash": "5S5dQC8PU3eFddBpBSixwyKmdybqUjkzJQ5AzG2RAuL",
+            "success": true,
+            "method": "mint_record"
+          }
+        },
+        {
+          "name": "accepted proof",
+          "transaction": {
+            "hash": "GRThXKViqoX8iZRTYH1ZUkq2J5wj1vwPXoqrhDqshwCL",
+            "success": true,
+            "method": "record_verification"
+          },
+          "proof_hash": "724ea71e509ad25210f390ce3ebce259b699b33cd74378663e146782bc021423"
+        },
+        {
+          "name": "live revocation",
+          "transaction": {
+            "hash": "CReWjodLWxru6jmnenYJN8uLayRzuDCaMuJhRRymFFSJ",
+            "success": true,
+            "method": "revoke_record"
+          }
+        }
+      ],
+      "browser_errors": []
+    },
+    "near_page": {
+      "status": "passed",
+      "checked_at": "2026-11-14T14:50:13.410Z",
+      "checks": [
+        "/near renders live integration and fits 1440px",
+        "/agents renders live integration and fits 1440px",
+        "/near renders live integration and fits 390px",
+        "/agents renders live integration and fits 390px",
+        "/near renders live integration and fits 320px",
+        "/agents renders live integration and fits 320px",
+        "Published evidence distinguishes 14 completed live checks and successful recovery from the incomplete private browser workflow",
+        "The served private worker bytes match the hash activated on NEAR",
+        "No browser exceptions on the NEAR and agent pages"
+      ],
+      "browser_errors": []
+    },
+    "private_workflow": {
+      "status": "failed",
+      "checked_at": "2026-11-14T14:24:40.120Z",
+      "checks": [
+        "The browser creates or restores the same encrypted holder fixture without exposing its key",
+        "NEAR Connect signs a real NEP-413 login and the holder binding is confirmed on NEAR",
+        "A fictional issuer-signed credential is created through the hosted restricted NEAR relay"
+      ],
+      "transactions": [
+        {
+          "method": "mint_record",
+          "hash": "7LBBzrJtbYNh8NFp2b5yEU6c93b9tX3CwQRGuHiWhomk"
+        },
+        {
+          "method": "execute_private_copy",
+          "hash": "GUSWbPfJz7vTyFt51qP1TrTjSsit5BP29RwxPLRs3ZVg"
+        }
+      ],
+      "browser_errors": [],
+      "stopped_at": "private copy",
+      "scope": "Injected NEAR Connect wallet with real NEP-413 signatures and testnet transactions. Full private browser workflow did not pass.",
+      "reason": "Private-copy confirmation timed out. Some OutLayer executions settle after the NEAR yield expires."
+    },
+    "complete_hosted_private_workflow": {
+      "status": "not_run"
+    },
+    "manual_meteor_intear_compatibility": {
+      "status": "not_run"
+    },
+    "locked_vault_external_agent_over_http": {
+      "status": "not_run"
+    }
+  },
+  "availability": {
+    "status": "intermittent",
+    "detail": "Some jobs succeed promptly. Others run after the NEAR yield expires and provider settlement reports Execution request not found. A pending or failed job is not a saved copy or successful disclosure."
+  },
+  "boundaries": [
+    "Browser encryption keeps original documents, holder keys and hidden claims out of backend plaintext and public NEAR state.",
+    "The optional TEE copy includes the holder key with explicit user consent.",
+    "The browser prepares BBS presentations at approval time. The TEE checks signed bindings and exact scope; recipients independently verify BBS mathematics.",
+    "The demo agent is deterministic. No language model inference is implemented.",
+    "Facet records OutLayer execution IDs but does not independently verify the complete TDX attestation chain.",
+    "Project administrators can publish future versions with access to project-bound storage keys.",
+    "Failed executions consume allowance. Revocation cannot erase retained disclosures or reliably cancel an in-flight delivery."
+  ]
+}

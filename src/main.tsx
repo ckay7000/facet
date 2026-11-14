@@ -4,5 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import '@fontsource-variable/manrope';
 import '@fontsource-variable/dm-sans';
 import App from './App';
+import { WalletProvider } from './Wallet';
 import './style.css';
-createRoot(document.getElementById('root')!).render(<React.StrictMode><BrowserRouter><App /></BrowserRouter></React.StrictMode>);
+import './agents.css';
+createRoot(document.getElementById('root')!).render(<React.StrictMode><BrowserRouter><WalletProvider><App /></WalletProvider></BrowserRouter></React.StrictMode>);

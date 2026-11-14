@@ -1,4 +1,5 @@
 import { NearBindgen, near, initialize, call, view, assert, validateAccountId } from 'near-sdk-js';
+import { teeConfig, configureTee, reservePrivate, claimPrivateIngress, failPrivateIngress, executePrivate, executeAgent, revokeAgent, bindWallet, walletRecords, recoverCopy, getPrivateJob, getAgentGrant, listAgentGrants, onPrivateExecution } from './vault.js';
 type RecordKind = 'self_recorded' | 'demo_issued';
 type Record = { token_id: string; owner_id: string; commitment: string; kind: RecordKind; issuer_id: string | null; issued_at: number; expires_at: number; revoked: boolean; revoked_at: number | null };
 function load<T>(key: string): T | null { const value = near.storageRead(key); return value === null ? null : JSON.parse(value) as T; }
@@ -12,6 +13,7 @@ function event(event: string, data: unknown) { near.log('EVENT_JSON:' + JSON.str
 export class Facet {
   owner_id = ''; issuer_account = ''; verifier_account = ''; request_public_key = ''; issuer_key = ''; issuer_active = true;
   records = 0; checks = 0; daily_cap = 40; day = ''; minted_today = 0;
+  tee_project_id = ''; tee_worker_url = ''; tee_worker_hash = ''; tee_broker_id = ''; tee_agent_id = ''; tee_daily_limit = 32; tee_day = ''; tee_jobs_today = 0; tee_jobs_total = 0;
   @initialize({})
   init({ owner_id, issuer_account, verifier_account, request_public_key, issuer_key, daily_cap = 40 }: { owner_id: string; issuer_account: string; verifier_account: string; request_public_key: string; issuer_key: string; daily_cap?: number }) {
     assert(validateAccountId(owner_id) && validateAccountId(issuer_account) && validateAccountId(verifier_account), 'Invalid authority');
@@ -19,9 +21,10 @@ export class Facet {
     assert(Number.isInteger(daily_cap) && daily_cap >= 1 && daily_cap <= 100, 'Invalid daily cap');
     this.owner_id = owner_id; this.issuer_account = issuer_account; this.verifier_account = verifier_account; this.request_public_key = request_public_key; this.issuer_key = issuer_key; this.daily_cap = daily_cap;
   }
-  @view({}) get_config() { return { network: 'testnet', contract_id: near.currentAccountId(), issuer_account: this.issuer_account, verifier_account: this.verifier_account, request_public_key: this.request_public_key, records: this.records, checks: this.checks, daily_cap: this.daily_cap, minted_today: this.day === Math.floor(now() / 86400000).toString() ? this.minted_today : 0 }; }
+  @view({}) get_config() { return { network: 'testnet', contract_id: near.currentAccountId(), issuer_account: this.issuer_account, verifier_account: this.verifier_account, request_public_key: this.request_public_key, records: this.records, checks: this.checks, daily_cap: this.daily_cap, minted_today: this.day === Math.floor(now() / 86400000).toString() ? this.minted_today : 0, tee: teeConfig(this) }; }
   @view({}) get_issuer({ issuer_id = 'facet-test-academy-v1' }: { issuer_id?: string } = {}) { return issuer_id === 'facet-test-academy-v1' ? { id: issuer_id, name: 'Facet Test Academy', public_key: this.issuer_key, active: this.issuer_active, demo: true } : null; }
   @call({}) set_issuer_active({ active }: { active: boolean }) { assert(near.predecessorAccountId() === this.owner_id, 'Only the registry administrator may change issuer trust'); assert(typeof active === 'boolean', 'Invalid issuer status'); this.issuer_active = active; }
+  @call({}) set_issuer_relay({ account_id }: { account_id: string }) { assert(near.predecessorAccountId() === this.owner_id, 'Only the registry administrator may rotate the issuer relay'); assert(validateAccountId(account_id) && account_id.endsWith('.testnet'), 'Use an isolated testnet relay'); this.issuer_account = account_id; return { issuer_account: account_id }; }
   @call({}) mint_record({ token_id, owner_id, commitment, kind, expires_at }: { token_id: string; owner_id: string; commitment: string; kind: RecordKind; expires_at: number }) {
     assert(near.predecessorAccountId() === this.issuer_account, 'Only the registered issuer relay may mint records'); tokenId(token_id); hash(owner_id); hash(commitment);
     assert(kind === 'self_recorded' || kind === 'demo_issued', 'Invalid attestation type');
@@ -58,4 +61,19 @@ export class Facet {
   @call({ payableFunction: true }) nft_transfer() { assert(false, 'Credential NFTs are holder-bound and cannot be transferred'); }
   @call({ payableFunction: true }) nft_transfer_call() { assert(false, 'Credential NFTs are holder-bound and cannot be transferred'); }
   @call({ payableFunction: true }) nft_approve() { assert(false, 'Credential NFTs do not allow marketplace approvals'); }
+  @call({}) configure_tee(b: any) { return configureTee(this, b); }
+  @call({}) reserve_private({ approval, holder_signature }: { approval: any; holder_signature: string }) { return reservePrivate(this, approval, holder_signature); }
+  @call({}) execute_private({ job_id }: { job_id: string }) { return executePrivate(this, job_id); }
+  @call({}) claim_private_ingress({ job_id }: { job_id: string }) { return claimPrivateIngress(this, job_id); }
+  @call({}) fail_private_ingress({ job_id }: { job_id: string }) { return failPrivateIngress(this, job_id); }
+  @call({}) execute_agent({ grant_id, job_id, request_signature }: { grant_id: string; job_id: string; request_signature: string }) { return executeAgent(this, grant_id, job_id, request_signature); }
+  @call({}) revoke_agent({ grant_id, holder_signature }: { grant_id: string; holder_signature: string }) { return revokeAgent(this, grant_id, holder_signature); }
+  @call({}) bind_holder_wallet({ wallet_id, holder_id, holder_signature }: { wallet_id: string; holder_id: string; holder_signature: string }) { return bindWallet(this, wallet_id, holder_id, holder_signature); }
+  @call({}) recover_private_copy({ token_id, job_id, recipient_public_key }: { token_id: string; job_id: string; recipient_public_key: string }) { return recoverCopy(this, token_id, job_id, recipient_public_key); }
+  @view({}) list_wallet_records({ account_id }: { account_id: string }) { return walletRecords(this, account_id); }
+  @view({}) get_wallet_holder({ account_id }: { account_id: string }) { assert(validateAccountId(account_id), 'Invalid wallet account'); return load<string>(`wallet_holder:${account_id}`); }
+  @view({}) get_private_job({ job_id }: { job_id: string }) { return getPrivateJob(job_id); }
+  @view({}) get_agent_grant({ grant_id }: { grant_id: string }) { return getAgentGrant(grant_id); }
+  @view({}) list_agent_grants({ owner_id, from_index = 0, limit = 40 }: { owner_id: string; from_index?: number; limit?: number }) { return listAgentGrants(owner_id, from_index, limit, this.tee_jobs_total); }
+  @call({ privateFunction: true }) on_private_execution({ job_id }: { job_id: string }) { return onPrivateExecution(this, job_id); }
 }

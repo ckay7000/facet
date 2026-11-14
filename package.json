@@ -11,13 +11,21 @@
     "dev": "node --env-file-if-exists=.env.local --import tsx scripts/dev.ts",
     "build": "tsc --noEmit && vite build",
     "test": "vitest run",
+    "test:worker": "node --import tsx scripts/test-worker.ts",
+    "test:private-live": "node --import tsx scripts/test-private-live.ts",
+    "test:private-browser": "node --import tsx scripts/test-private-browser.ts",
+    "agent:use": "node --import tsx scripts/use-agent.ts",
+    "build:worker": "cargo build --locked --manifest-path workers/Cargo.toml --target wasm32-wasip2 --release -j 1 --bin facet-private-vault",
     "build:contract": "npm run build --prefix contracts/facet",
     "test:live": "node --import tsx scripts/test-contract-live.ts",
     "test:browser": "node --import tsx scripts/test-browser.ts"
   },
   "dependencies": {
+    "@digitalbazaar/bbs-signatures": "3.1.0",
     "@fontsource-variable/dm-sans": "5.3.0",
     "@fontsource-variable/manrope": "5.3.0",
+    "@hot-labs/near-connect": "0.12.0",
+    "@noble/ciphers": "2.4.0",
     "@noble/curves": "2.4.0",
     "@noble/hashes": "2.4.0",
     "@scure/base": "2.2.0",
@@ -25,8 +33,7 @@
     "near-api-js": "7.4.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "react-router-dom": "7.18.5",
-    "@digitalbazaar/bbs-signatures": "3.1.0"
+    "react-router-dom": "7.18.5"
   },
   "devDependencies": {
     "@playwright/test": "1.64.1",

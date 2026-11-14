@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "checked_at": "2026-11-14T14:54:59.359Z",
+  "base_url": "https://facet-near.vercel.app",
+  "checks": [
+    "/near renders live integration and fits 1440px",
+    "Wallet scripts have a fresh matching CSP nonce and the current testnet RPC origins",
+    "/agents renders live integration and fits 1440px",
+    "/near renders live integration and fits 390px",
+    "/agents renders live integration and fits 390px",
+    "/near renders live integration and fits 320px",
+    "/agents renders live integration and fits 320px",
+    "Published evidence distinguishes 14 completed live checks and successful recovery from the incomplete private browser workflow",
+    "The served private worker bytes match the hash activated on NEAR",
+    "No browser exceptions on the NEAR and agent pages"
+  ],
+  "browser_errors": []
+}

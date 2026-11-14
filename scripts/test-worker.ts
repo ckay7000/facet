@@ -1,0 +1,45 @@
+import assert from 'node:assert/strict';
+import { mkdir, readFile, writeFile, rm } from 'node:fs/promises';
+import { spawn } from 'node:child_process';
+import { resolve } from 'node:path';
+import * as bbs from '@digitalbazaar/bbs-signatures';
+import { canonical, checkPresentation, credentialHeader, decode, demoMessages, derivePresentation, encode, hash, holderPublic, randomHex, rememberIssuer, signJson, SUITE, utf8 } from '../shared/crypto.js';
+import { documentCommitment } from '../shared/vault.js';
+import { agentAuthPublic, openAgentDelivery, openOwnerDelivery, recoveryKeys, type CopyPacket, type GrantPacket } from '../shared/agent.js';
+import type { AgentGrant } from '../shared/agent.js';
+import type { ChainRecord, Credential, DocumentItem, Issuer, SignedRequest } from '../shared/types.js';
+
+await mkdir('.local', { recursive: true, mode: 0o700 });
+const fixturePath = resolve('.local/worker-interop.json'), outputPath = resolve('.local/worker-interop-deliveries.json');
+const seed = randomHex(32), requestSeed = randomHex(32), contract = 'credentials.facet-lab-1102.testnet', data = encode(utf8('Fictional document for Facet private worker checks.'));
+const salt = randomHex(32), owner_id = holderPublic(seed), now = Date.now();
+const record: ChainRecord = { token_id: 'facet_' + randomHex(), owner_id, commitment: documentCommitment(data, salt), kind: 'demo_issued', issuer_id: 'facet-test-academy-v1', issued_at: now, expires_at: now + 86400000, revoked: false, revoked_at: null };
+const keys = await bbs.generateKeyPair({ ciphersuite: SUITE });
+const issuer: Issuer = { id: record.issuer_id!, name: 'Facet Test Academy', public_key: encode(keys.publicKey), active: true, demo: true }; rememberIssuer(issuer);
+const messages = demoMessages(record), header = credentialHeader(contract, record.token_id, issuer.id);
+const credential: Credential = { token_id: record.token_id, issuer_id: issuer.id, record, messages, header, signature: encode(await bbs.sign({ secretKey: keys.secretKey, publicKey: keys.publicKey, messages: messages.map(utf8), header: decode(header), ciphersuite: SUITE })) };
+const document: DocumentItem = { id: record.token_id, title: 'Fictional worker-check document', filename: 'fixture.txt', mime: 'text/plain', data, salt, commitment: record.commitment, created_at: now, record, credential, issuance_tx: null };
+const copy: CopyPacket = { version: 'facet-private-copy-v1', holder_seed: seed, document };
+const requests: SignedRequest[] = Array.from({ length: 2 }, () => { const payload = { version: 'facet-request-v1' as const, nonce: randomHex(), audience: 'agent.facet-checks-1102.testnet', purpose: 'Verify fictional training completion', fields: ['course', 'achievement'] as ('course' | 'achievement')[], created_at: now, expires_at: now + 600000 }; return { payload, signature: signJson(payload, requestSeed) }; });
+const deliveryKey = randomHex(32), grantId = randomHex(), jobId = randomHex(), recipient = recoveryKeys();
+const presentations = []; for (const r of requests) presentations.push(await derivePresentation(credential, r, seed));
+const packet: GrantPacket = { version: 'facet-private-grant-v1', grant_id: grantId, owner_id, token_id: record.token_id, copy_hash: hash(canonical(copy)), delivery_key: deliveryKey, presentations };
+const grant: AgentGrant = { id: grantId, owner_id, token_id: record.token_id, agent_id: requests[0].payload.audience, fields_mask: 3, expires_at: requests[0].payload.expires_at, max_uses: 2, used: 0, purpose_hash: hash(requests[0].payload.purpose), delivery_key_hash: hash(deliveryKey), auth_key: agentAuthPublic(deliveryKey), copy_hash: packet.copy_hash, packet_hash: hash(canonical(packet)), ready: true, revoked: false, created_at: now, worker_hash: '00'.repeat(32), project_id: 'facet-lab-1102.testnet/facet-vault' };
+await writeFile(fixturePath, JSON.stringify({ copy, packet, input: { owner_id, token_id: record.token_id, record, grant, request_public_key: holderPublic(requestSeed) }, job_id: jobId, recipient_public_key: recipient.public_key }), { mode: 0o600 });
+await writeFile(outputPath, '{}', { mode: 0o600 });
+try {
+  await new Promise<void>((resolve, reject) => { const child = spawn('cargo', ['test', '--manifest-path', 'workers/Cargo.toml', '--test', 'interop', '-j', '1', '--', '--ignored'], { stdio: 'inherit', env: { ...process.env, FACET_INTEROP_FIXTURE: fixturePath, FACET_INTEROP_OUTPUT: outputPath } }); child.on('exit', code => code === 0 ? resolve() : reject(new Error('Rust worker interop checks failed'))); child.on('error', reject); });
+  const delivery = JSON.parse(await readFile(outputPath, 'utf8'));
+  const agentOutput = { schema: 'facet-tee-output-v1', operation: 'use', job_id: jobId, grant_id: grantId, usage_index: 0, ciphertext: delivery.agent };
+  const proof = await openAgentDelivery(agentOutput, deliveryKey);
+  assert.ok(canonical(proof) === canonical(presentations[0]));
+  assert.ok((await checkPresentation(proof, record, issuer, holderPublic(requestSeed), contract)).every(c => c.ok));
+  assert.ok(!canonical(proof).includes('Avery') && !canonical(proof).includes('92 / 100'));
+  await assert.rejects(openAgentDelivery(agentOutput, randomHex(32)));
+  await assert.rejects(openAgentDelivery({ ...agentOutput, job_id: randomHex() }, deliveryKey));
+  const recovered = await openOwnerDelivery({ schema: 'facet-tee-output-v1', operation: 'recover', job_id: jobId, ciphertext: delivery.owner }, recipient.secret);
+  assert.ok(canonical(recovered) === canonical(copy));
+  await assert.rejects(openOwnerDelivery({ schema: 'facet-tee-output-v1', operation: 'recover', job_id: jobId, ciphertext: delivery.owner }, recoveryKeys().secret));
+  console.log('Passed: real JS BBS packets, Rust scope refusals, encrypted recipient delivery, wrong-key/job refusal and owner recovery.');
+  await writeFile('.local/worker-checks.json', JSON.stringify({ status: 'passed', checked_at: new Date().toISOString(), rust_interoperability_tests: 2, checks: ['Real JavaScript BBS packets pass Rust signature and scope validation', 'Rust agent delivery decrypts in JavaScript and independently verifies its BBS proof', 'Wrong recipient keys and substituted job IDs refuse decryption', 'Rust owner delivery restores the original copy and holder identity'] }, null, 2));
+} finally { await rm(fixturePath, { force: true }); await rm(outputPath, { force: true }); }

@@ -1,0 +1,98 @@
+{
+  "network": "testnet",
+  "contract_id": "credentials.facet-lab-1102.testnet",
+  "checks_contract_id": "facet-checks-1102.testnet",
+  "outlayer_id": "outlayer.testnet",
+  "project_id": "facet-lab-1102.testnet/facet-vault",
+  "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29",
+  "worker_url": "https://facet-near.vercel.app/wasm/a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29.wasm",
+  "worker_bytes": 343041,
+  "manifest": {
+    "storage_account": "predecessor",
+    "encryption_keys": [
+      {
+        "path": "credentials",
+        "bind": "project",
+        "caller": "predecessor"
+      }
+    ]
+  },
+  "broker_id": "broker.facet-checks-1102.testnet",
+  "agent_id": "agent.facet-checks-1102.testnet",
+  "wallet_fixture_id": "wallet.facet-checks-1102.testnet",
+  "outlayer_api_url": "https://testnet-api.outlayer.ai",
+  "daily_limit": 32,
+  "max_file_bytes": 65536,
+  "compute_deposit": "20000000000000000000000",
+  "prepared_at": "2026-11-14T13:54:05.634Z",
+  "transactions": [
+    {
+      "method": "configure_tee",
+      "receiver_id": "facet-checks-1102.testnet",
+      "hash": "CYhT1EcArvL7gnxLZPzwdxxhtc6jg7jhnDUojTG2cQju"
+    },
+    {
+      "method": "configure_tee",
+      "receiver_id": "credentials.facet-lab-1102.testnet",
+      "hash": "Ermj7sjEQtbB2njVqc4QmJXAeaPBnJ276UnENNVqbr8q"
+    },
+    {
+      "method": "set_issuer_relay",
+      "receiver_id": "credentials.facet-lab-1102.testnet",
+      "hash": "BuyzMAuZbQEY6ECSqVy6s545tQ5dgmr78jJr3uxPGhKt"
+    },
+    {
+      "method": "refill_restricted_testnet_gas_allowance",
+      "receiver_id": "relay.facet-lab-1102.testnet",
+      "hash": "66K6Htw8i2rDGHDobBxQTc3fhAi1nRLZNzXuJXUdR7L2"
+    },
+    {
+      "method": "refill_restricted_testnet_gas_allowance",
+      "receiver_id": "agent.facet-checks-1102.testnet",
+      "hash": "BzrGT9YE8kDPz3BUmdcMk9L1wFzwK6vAvgemavb2Edd1"
+    },
+    {
+      "method": "refill_restricted_testnet_gas_allowance",
+      "receiver_id": "agent.facet-checks-1102.testnet",
+      "hash": "6igtKich8Gt392Lm9TExgYDsZiwyC8eY7uEwB8kFdBzy"
+    }
+  ],
+  "permissions": {
+    "issuer": {
+      "FunctionCall": {
+        "allowance": "600000000000000000000000",
+        "method_names": [
+          "mint_record",
+          "revoke_record",
+          "reserve_private",
+          "claim_private_ingress",
+          "fail_private_ingress",
+          "execute_private",
+          "revoke_agent",
+          "bind_holder_wallet"
+        ],
+        "receiver_id": "credentials.facet-lab-1102.testnet"
+      }
+    },
+    "agent": {
+      "FunctionCall": {
+        "allowance": "600000000000000000000000",
+        "method_names": [
+          "execute_agent"
+        ],
+        "receiver_id": "credentials.facet-lab-1102.testnet"
+      }
+    }
+  },
+  "contract_hash": "f5909a731ac42fad8c68c26bef4a45c4ad7c1b6cee3ac7ade78ff0736f892de4",
+  "source_files_sha256": {
+    "contracts/facet/src/index.ts": "fba3dadc6e3a1c9ce916a7bb6c5d615250cf713a80a62c0235af402aad44fe67",
+    "contracts/facet/src/vault.ts": "ca2a63ee4aeb517737581fee011e23c996b72ae9ea7ee6f00ceeebb4acfbdd2f",
+    "contracts/facet/src/native-ed25519.c.inc": "d1cb672e38717a7eb693165ba0aa13ff10a4e8993d5c3e0a1b30d9200243a011",
+    "contracts/facet/scripts/prepare-sdk.mjs": "4707945fba1cd1326d359eee69e23acb4db6f976a1a258552b304e31c424f85d",
+    "workers/src/lib.rs": "e3a17acea31af93dd73f670125a62e369c7fc6dd0e5accd97cdc846057c53422",
+    "workers/src/main.rs": "5f84611ebada042ff8dcd91b6a3b57df2cab51d991ab2fd4f9e6ac15e0d3eefe",
+    "workers/Cargo.lock": "af020b715e094e9f3ca0345a830ad814ae97666a7da65a67bc3107ec20d13df5"
+  },
+  "activated_at": "2026-11-14T13:54:29.415Z"
+}

@@ -1,0 +1,185 @@
+{
+  "status": "failed",
+  "checked_at": "2026-11-14T14:41:21.138Z",
+  "checks": [
+    "Live NEAR configuration names the exact published worker and dedicated agent",
+    "The private callback refuses a direct call without an authenticated promise result",
+    "Holder signature binds the dedicated owner wallet on NEAR",
+    "NEAR rejects a wrong holder, unauthorized relay and substituted worker before private storage",
+    "A real OutLayer execution validates and seals the encrypted document/credential copy",
+    "Repeating a completed signed copy request does not spend a new ingress deposit",
+    "Consumed encrypted ingress is deleted while the sealed project copy remains available",
+    "Browser-compatible BBS presentations persist under a two-execution NEAR permission",
+    "A different agent or invalid request capability cannot consume the permission",
+    "Separate TEE executions read the saved credential and deliver only approved, verifiable BBS claims",
+    "Replaying the same agent job retrieves its receipt without increasing usage",
+    "NEAR refuses a third execution after the allowance is used",
+    "Only the holder can revoke; a revoked permission refuses future TEE dispatch",
+    "An actually expired onchain grant refuses further execution"
+  ],
+  "jobs": [
+    {
+      "id": "85f1e0717b1cf89ebd67fdb2ccacd73a",
+      "kind": "copy",
+      "state": "ready",
+      "request_id": "45669",
+      "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29"
+    },
+    {
+      "id": "05ae93f24d38770c6b0954744d62fef1",
+      "kind": "grant",
+      "state": "ready",
+      "request_id": "45912",
+      "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29"
+    },
+    {
+      "id": "ee5c6120a1d77c9a82601680227718f3",
+      "kind": "use",
+      "state": "ready",
+      "request_id": "45921",
+      "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29"
+    },
+    {
+      "id": "b6d0b8a0e694a562ffbd79acc9e8d3e3",
+      "kind": "use",
+      "state": "ready",
+      "request_id": "45929",
+      "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29"
+    },
+    {
+      "id": "245efe90559f04cd36dacae68f56b964",
+      "kind": "grant",
+      "state": "ready",
+      "request_id": "45937",
+      "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29"
+    },
+    {
+      "id": "8ba47d1cbc14853257e1914ef2e8f5c9",
+      "kind": "grant",
+      "state": "ready",
+      "request_id": "45947",
+      "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29"
+    }
+  ],
+  "transactions": [
+    {
+      "method": "on_private_execution",
+      "hash": "JAdX2Ni2SWHiJ9oHcStvnFUZod4LqiwvgPzJwyYBosdW",
+      "success": false
+    },
+    {
+      "method": "bind_holder_wallet",
+      "hash": "4nJxxbfvvM9SJkUZamsEjDziFfnfm1RYrbxL8Ju7vDYn",
+      "success": true
+    },
+    {
+      "method": "reserve_private",
+      "hash": "FQ14ByeBjEFayb89atww1EPgK2GCq5mwDhVh33w5EogB",
+      "success": false
+    },
+    {
+      "method": "reserve_private",
+      "hash": "3f1FN81YDGNHyqPMPQWhTwJ35ESgEG52XdmBpyg8jPYe",
+      "success": false
+    },
+    {
+      "method": "reserve_private",
+      "hash": "2aHq8GtZZzbCtrMvgQKSxGMjNTun7FvVJksAgddSyhB4",
+      "success": false
+    },
+    {
+      "hash": "3z9y7EsHEjmQN59MdtR3FAmhxUuZpxFGYi6m6j8q5BZT",
+      "method": "execute_private",
+      "success": true
+    },
+    {
+      "method": "execute_agent",
+      "hash": "dqRiF2EjQvoQkhin5AqtZyWKicnMbqAnjRcmYjRGmJ9",
+      "success": false
+    },
+    {
+      "method": "execute_agent",
+      "hash": "9RwCwPPu6o3E9rJeNXTaseqez7SK61m9rhKCKDvCr57x",
+      "success": false
+    },
+    {
+      "hash": "3zYDHFsunFvrDfi5NV7nepH8b47iXSuNyf8eKqmib8y4",
+      "method": "execute_agent",
+      "success": true
+    },
+    {
+      "method": "record_verification",
+      "hash": "DcfPid3bw6ni26utvMkSact7Xg74zLMgJxrx8y2cvpvz",
+      "success": true
+    },
+    {
+      "hash": "4ERsGJncY62mwPotUdpnHqsWireGNgxUv9QEAYySGzQg",
+      "method": "execute_agent",
+      "success": true
+    },
+    {
+      "method": "record_verification",
+      "hash": "c4VexrHqJaXLD5T9feXUwQcrraFJQgY32BQ7Kv7aYbJ",
+      "success": true
+    },
+    {
+      "method": "execute_agent",
+      "hash": "7ppnhioYFncG1GdehvMVeH5UUPL6jfpiJrYa1fkbTDRq",
+      "success": false
+    },
+    {
+      "hash": "B2t2HysorziG7xof2NVGZY99JfHpoi4JsQZVsVHoARtX",
+      "method": "execute_private",
+      "success": true
+    },
+    {
+      "method": "revoke_agent",
+      "hash": "Bt2WZpEy8DoNDxjwD2zGcEoaRBMKAaAHk4berNGF1o5A",
+      "success": false
+    },
+    {
+      "method": "revoke_agent",
+      "hash": "GPjPY1pWHaYV5FpXLb5xFM4QFsza52PJpoXD4v4zYGax",
+      "success": true
+    },
+    {
+      "method": "execute_agent",
+      "hash": "3oXGsdGmVjaq5pWfuqt4i8JJCpKynmBE1csRc4KUTvLw",
+      "success": false
+    },
+    {
+      "hash": "B6Z97ipYfjYj8QhtY59r8fjBftGeMtLcqNLF993ShD4j",
+      "method": "execute_private",
+      "success": true
+    },
+    {
+      "method": "execute_agent",
+      "hash": "2B43Yjxo6Df5nc2ZG2HBa9VhXjpqLP2pRUqnbcZ4ZxCE",
+      "success": false
+    },
+    {
+      "method": "recover_private_copy",
+      "hash": "ATM6RGq4MNfzsowAbTcys9SjN7LbV6hq5g4vdVCDJQ9b",
+      "success": false
+    }
+  ],
+  "reused_copy_job": "85f1e0717b1cf89ebd67fdb2ccacd73a",
+  "contract_id": "facet-checks-1102.testnet",
+  "worker_hash": "a9e7112042e883459a15490499808af69e0a1b02c8b1e55fdaafec63435e9e29",
+  "incomplete_operation": {
+    "job_id": "590d4621e26d52b7046f0d6d640cf10f",
+    "kind": "recover",
+    "state": "failed",
+    "error_code": "private_execution_failed",
+    "transaction_hash": "6mVRvx9E26wVfTCoXPWUgcRbGRFHxXReXs6dhXA8FDX7",
+    "outlayer_request_id": "45983",
+    "provider_job_id": 108961,
+    "provider_status": "failed",
+    "provider_error": "Execution request not found during late settlement",
+    "provider_settlement_transaction": "8vkBvR2a2d8a3i29QBKyuedYzBsmPCvPqj13J8h3xuXv",
+    "independently_decrypted": false,
+    "checked_at": "2026-11-14T14:47:00.800Z"
+  },
+  "stopped_at": "Wallet recovery settlement",
+  "reason": "The RPC timed out waiting for FINAL while the recovery transaction was INCLUDED_FINAL. Completed checks and the separate successful recovery test remain evidence; the complete native suite did not pass."
+}

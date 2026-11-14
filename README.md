@@ -1,49 +1,86 @@
 # Facet
 
-Facet is an application that lets people prove facts from signed credentials without sharing their full documents.
+Facet is a private document and credential vault built on NEAR. Connect a wallet, approve the facts an application may see, and let an agent use a saved credential within limits you control.
 
-A recipient may need to know that someone completed a course without receiving their name, grade or original certificate. Facet keeps documents in an encrypted local vault and lets the holder approve a proof of selected issuer-signed fields. Verification checks that proof against current credential ownership and status on NEAR.
+An application can verify course completion without receiving the learner's name, score or original certificate. NEAR records wallet bindings, credential status, signed permissions and execution receipts. An optional OutLayer TEE copy stores the document, credential and holder key for wallet recovery and scoped agent use.
 
-[Open the app](https://facet-near.vercel.app) · [Watch the demo](https://facet-near.vercel.app/media/facet-demo-20261103.mp4)
+[Open Facet](https://facet-near.vercel.app) · [Wallet and agent access](https://facet-near.vercel.app/agents) · [Inspect the NEAR integration](https://facet-near.vercel.app/near)
 
-## How it works
+**Verification is partial.** Real testnet executions have confirmed sealed copies, approved agent deliveries and owner recovery. The complete private browser workflow has not passed: some OutLayer workers settle after their NEAR callback expires. Locked-vault external-agent access through live HTTP, manual Meteor/Intear compatibility and the complete hosted private browser flow remain unverified. The [current evidence](https://facet-near.vercel.app/near-verification.json) separates these results.
 
-1. **Keep the original private.** Documents and the holder key stay in a password-protected AES-256-GCM vault on the device. The vault supports locking and encrypted backup recovery.
-2. **Distinguish records from credentials.** A personal upload can create a salted, holder-bound document fingerprint on NEAR, marked **Self-recorded · unverified**. An issued credential carries an issuer’s cryptographic signature.
-3. **Approve a limited disclosure.** BBS selective-disclosure proofs reveal only the requested signed fields. The holder reviews the request and signs the approved presentation.
-4. **Check current status.** The verifier checks the proof, holder binding, issuer, expiry, revocation and request reuse. The original document and vault password are not needed for verification.
+## How Facet uses NEAR
 
-The proof lab demonstrates tampered claims, substituted holders, excess disclosure, expiry and replay refusal. Revocation blocks future verification; an encrypted backup restores the vault and holder key.
-
-## Why this approach
-
-Sending a certificate gives the recipient every visible field and a copy to retain. Manually redacting it changes the document the issuer signed. A document fingerprint establishes a record of bytes, but does not establish the truth of a credential’s claims.
-
-Facet combines issuer-signed selective disclosure with a private vault, explicit holder approval and current onchain status checks. The recipient gets the approved claims and a verifiable proof while the holder keeps the rest of the document private.
-
-## Example: prove course completion
-
-A learner receives a signed training credential from the fictional **Facet Test Academy**. A hiring team requests the course name and completion status. The learner previews those fields, approves the request and exports a BBS proof; the name, score and certificate stay hidden.
-
-The team imports the proof in another browser and verifies the issuer signature, holder binding and current NEAR status. Reusing the same request is refused. Editing a claim invalidates the proof, and revoking the credential blocks later verification. The learner can lock the vault and restore it from an encrypted backup with the original password. The academy and learner are fictional; cryptographic signatures and testnet receipts are real.
-
-## Try it
-
-The sponsored demo requires no blockchain wallet. Use fictional documents.
-
-| Action | Expected result |
+| NEAR technology | Implemented behavior |
 | --- | --- |
-| Create a password in **My vault** and upload a file | The original is stored encrypted on the device |
-| Select **Create private NFT** for that file | A holder-bound fingerprint record is marked unverified |
-| Select **Issue demo credential**, then **Prove selected fields** | The preview shows the approved claims and hidden fields |
-| Export the proof and import it in **Verify** in another browser | The signature and current credential status are checked |
-| Reuse, alter or revoke the proof’s credential | The relevant verification check refuses it |
+| NEAR Connect and NEP-413 | A wallet signs a login challenge; the service checks the signing key's full-access authority on NEAR. The holder approves binding that wallet to the vault. |
+| NEAR contract and holder-bound NFT records | Salted document fingerprints, issuer keys, credential expiry and revocation are registered on testnet. Original files and private filenames are excluded. |
+| Native Ed25519 verification | The contract checks the holder's exact approval: credential, fields, recipient capability, expiry, allowance and worker hash. |
+| Onchain agent grants | The configured agent account dispatches with a valid capability signature. NEAR enforces current status, revocation, expiry and a one-to-three execution allowance. |
+| NEAR cross-contract calls to OutLayer | Facet requests a hash-pinned Rust WASI worker that seals private copies and returns encrypted approved presentations, with public execution receipts. |
+| Wallet-signed recovery | The bound wallet requests delivery to a fresh browser key. The browser decrypts the saved copy and chooses a new local password. |
 
-[Full walkthrough](docs/DEMO.md) · [Recorded verification evidence](deployments/verification.json)
+NEAR authorizes each private execution. An independent agent client can use an existing grant while the holder's local vault is locked.
+
+[Submission wording: how Facet uses NEAR](docs/SUBMISSION.md).
+
+## What is stored where
+
+| Browser encrypted vault | Optional TEE copy | Public NEAR records |
+| --- | --- | --- |
+| Original files, private filenames and salts | Approved document, credential and holder key | Token/holder identifiers, wallet binding and salted fingerprints |
+| Holder key and complete credentials | Preapproved BBS presentations and delivery material | Issuer keys, credential expiry and revocation |
+| Local history and private agent access packages | Persistent project-bound sealed storage | Agent identity, field mask, expiry, usage, worker hash and encrypted delivery receipts |
+
+The browser encrypts TEE ingress before it reaches the backend. Passwords remain local. Agent recipients receive approved issuer-signed fields and required public proof bindings: holder ID, token ID, credential type, expiry and fingerprint. They receive neither the original document nor the holder key.
+
+The local vault uses AES-256-GCM and PBKDF2-SHA-256 with 600,000 iterations. An encrypted backup preserves documents, the holder key, history and existing agent capabilities. Wallet recovery restores each saved TEE document and the holder key; local history and prior agent delivery keys still need the encrypted backup.
+
+## Try wallet and agent access
+
+Use fictional documents and a NEAR **testnet** wallet.
+
+This is an experimental workflow. Continue only after each private receipt becomes `ready`; use **Refresh receipt** to inspect pending or failed work before creating another request.
+
+1. Create a password in **My vault**, export an encrypted backup, and select **Issue demo credential**.
+2. Open **Agent access**, connect your wallet, sign the login, and bind it to this vault.
+3. Approve storing the document, credential and holder key, then select **Save private TEE copy**.
+4. Preview the fields, purpose, expiry and execution allowance. Approve the agent permission.
+5. Select **Run demo agent**. The recipient independently verifies the BBS presentation and records a NEAR verification receipt.
+6. Export private agent access for an external client. Locking the local vault leaves the grant usable until its allowance, expiry or revocation stops it.
+7. Revoke permission to block future requests. On another browser, connect the bound wallet, approve **Recover copy**, and choose a new password.
+
+The demo agent checks training eligibility deterministically. No language model or paid inference is used; an AI agent can call the same scoped capability API.
+
+### External agent example
+
+Export **private agent access** from a grant with an execution remaining. Keep the file private and give it only to the intended agent.
+
+```bash
+npm run agent:use -- --access /path/to/facet-private-agent-access.json
+```
+
+The client signs a capability request, decrypts the delivery, independently checks its scope and BBS signature, and requests a verification receipt. It prints approved claims and execution identifiers. No vault password, original document or owner wallet is required. Add `--url http://127.0.0.1:5370` for development or `--proof /path/to/approved-proof.json` to save the disclosed presentation.
+
+## Local documents and direct verification
+
+Local storage works without a wallet. Upload a file to keep it encrypted; select **Create private NFT** to register its fingerprint. Personal uploads are **Self-recorded · unverified**. Registration does not authenticate a document or confer legal ownership.
+
+For issuer-signed credentials, the holder can approve a one-off BBS proof at the verification desk. A recipient imports it without a vault and checks the issuer, holder signature and current NEAR status. Reused requests, edited claims and revoked credentials are refused. The **Proof lab** exercises cryptographic rejection paths.
+
+[Walkthrough and original demo video](docs/DEMO.md) · [Engineering reference](docs/ENGINEERING.md)
+
+## Inspect the implementation
+
+[/near](https://facet-near.vercel.app/near) displays live configuration, the contract address and exact worker hash. Public artifacts are in `deployments/`; [/near-verification.json](https://facet-near.vercel.app/near-verification.json) serves the private integration evidence. **Agent access** offers public execution receipts.
+
+- `contracts/facet/src/vault.ts`: signature checks, wallet binding, grant limits, OutLayer calls and callbacks.
+- `workers/src/lib.rs`: sealed storage, signed-presentation validation and encrypted deliveries.
+- `shared/agent.ts`: approval/capability bindings, ingress encryption and recipient decryption.
+- `scripts/agent-client.ts`: walletless external agent and independent proof verification.
 
 ## Run locally
 
-Use Node 24 and npm. Application tests and the frontend build require no keys.
+Use Node 24 and npm. Unit tests and the frontend build require no keys.
 
 ```bash
 git clone https://github.com/NSEVEjk0/facet.git
@@ -55,12 +92,14 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open `http://127.0.0.1:5370`. The encrypted vault works locally without relay credentials; chain actions require your own configured testnet relay. [Development and deployment](docs/DEVELOPMENT.md).
+Open `http://127.0.0.1:5370`. Local vault encryption works without configuration; chain and TEE actions need dedicated testnet roles. [Builds, deployment and integration checks](docs/DEVELOPMENT.md).
 
-## Technical reference
+## Prototype boundaries
 
-[Architecture, proof verification and privacy](docs/ENGINEERING.md) · [Independent proof checker](scripts/check-proof.ts)
+Facet Test Academy and its claims are fictional. Real issuer onboarding is future work. BBS mathematics run in the browser and verification service. The TEE checks signatures, bindings and disclosure scope, then delivers browser-prepared presentations; it does not derive new BBS proofs at execution time. The contract authorizes execution and records the verification relay's result.
 
-Facet uses React, Vite, NEAR SDK JS, Noble/Scure cryptography and Digital Bazaar’s BBS implementation. Build and deployment tooling is shared with Kiosk; the vault, credential and proof workflows are separate. Dependency versions are pinned. [MIT license](LICENSE); third-party licenses apply to dependencies.
+OutLayer supplies confidential execution and attestations. Facet does not independently verify the complete TDX attestation chain. Project-bound storage persists across runs; project administrators can publish future versions with access to those keys. Hash pinning identifies the approved version but does not remove administrator trust.
 
-Public holder and token IDs, issuer, expiry, revocation and salted fingerprints remain visible. Recipients can retain disclosed claims. The testnet issuer is fictional, requester labels are self-declared and the service relies on its designated verification relay. A vault password cannot be reset; keep an encrypted backup.
+Private execution depends on OutLayer testnet availability. A pending or failed job is not a stored copy or successful disclosure; inspect its NEAR receipt before creating another request. TEE originals are limited to 64 KiB; local files support up to 5 MB. Grants permit one to three executions within five to fifteen minutes. Failed executions consume allowance. Public wallet/holder/token activity remains linkable. Revocation cannot erase retained disclosures or reliably cancel an in-flight delivery. This testnet prototype has no independent security audit.
+
+[MIT license](LICENSE). Dependency licenses apply to their respective code.
