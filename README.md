@@ -8,10 +8,6 @@ An application can verify course completion without receiving the learner's name
 
 [![Watch the narrated Facet walkthrough](public/media/facet-demo-20261114-poster.jpg)](https://facet-near.vercel.app/demo)
 
-The November 14 demo uses genuine hosted UI captures: a verified direct credential flow, an injected-wallet signed login, clearly marked agent permission previews, and the published NEAR integration evidence. [Video, captions and reproducible rendering](docs/DEMO.md).
-
-**Verification is partial.** Real testnet executions have confirmed sealed copies, approved agent deliveries and owner recovery. The complete private browser workflow has not passed: some OutLayer workers settle after their NEAR callback expires. Locked-vault external-agent access through live HTTP, manual Meteor/Intear compatibility and the complete hosted private browser flow remain unverified. The [current evidence](https://facet-near.vercel.app/near-verification.json) separates these results.
-
 ## How Facet uses NEAR
 
 | NEAR technology | Implemented behavior |
@@ -105,13 +101,5 @@ Facet Test Academy and its claims are fictional. Real issuer onboarding is futur
 OutLayer supplies confidential execution and attestations. Facet does not independently verify the complete TDX attestation chain. Project-bound storage persists across runs; project administrators can publish future versions with access to those keys. Hash pinning identifies the approved version but does not remove administrator trust.
 
 Private execution depends on OutLayer testnet availability. A pending or failed job is not a stored copy or successful disclosure; inspect its NEAR receipt before creating another request. TEE originals are limited to 64 KiB; local files support up to 5 MB. Grants permit one to three executions within five to fifteen minutes. Failed executions consume allowance. Public wallet/holder/token activity remains linkable. Revocation cannot erase retained disclosures or reliably cancel an in-flight delivery. This testnet prototype has no independent security audit.
-
-## Hackathon work and related project
-
-The current public repository is `ckay7000/facet`. The previous account’s copy is preserved privately; commit history, branches, tags and demo artifacts are retained here.
-
-The NEAR wallet, persistent TEE vault and scoped agent integration was built during the eligible October 19–November 14 window. Earlier document-vault and direct-proof functionality is identified as baseline in [the November 3 demo evidence](deployments/demo-2026-11-03.json). [The integration change](https://github.com/ckay7000/facet/commit/d81bc77) and the current dated capture/verification reports identify the new work. The project uses React/Vite, NEAR Connect, OutLayer, BBS libraries and AI-assisted development; dependency and local narration licenses apply separately.
-
-The author’s other intended independent entry is [Sealwork](https://github.com/ckay7000/sealwork), private bank-receipt reconciliation with reviewed allocations and checked exports. Facet provides holder-controlled credential disclosure and agent permissions; Sealwork processes financial records through a separate contract and workflow. The original and upgraded Sealwork builds are versions of one project.
 
 [MIT license](LICENSE). Dependency licenses apply to their respective code.
