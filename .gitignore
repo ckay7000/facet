@@ -17,6 +17,8 @@ core
 core.*
 
 .venv/
+__pycache__/
+*.py[cod]
 
 node_modules
 contracts/*/node_modules

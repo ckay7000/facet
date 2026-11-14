@@ -1,41 +1,80 @@
-# Facet demo
+# Facet narrated demo
 
-[Watch the demo](https://facet-near.vercel.app/media/facet-demo-20261103.mp4) · [Open the app](https://facet-near.vercel.app) · [Public test evidence](../deployments/demo-2026-11-03.json)
+[Watch in the app](https://facet-near.vercel.app/demo) · [Download the MP4](https://facet-near.vercel.app/media/facet-demo-20261114.mp4) · [Open Facet](https://facet-near.vercel.app)
 
-The captioned November 3 video shows the original encrypted-vault and BBS workflow. Its fingerprint, size and checks are recorded in the linked evidence. The newer wallet, persistent TEE and scoped agent prototype is at [Agent access](https://facet-near.vercel.app/agents), with contracts and execution evidence at [/near](https://facet-near.vercel.app/near).
+[![Watch the narrated walkthrough](../public/media/facet-demo-20261114-poster.jpg)](https://facet-near.vercel.app/demo)
 
-**The complete private browser walkthrough has not passed.** Wallet authentication and binding work in the injected-wallet browser checks, and separate live executions establish sealed copies, scoped disclosure and recovery. The browser run stopped at private-copy confirmation because OutLayer settlement expired. Locked-vault external-agent use through live HTTP and the full hosted private browser run remain untested. Treat the walkthrough below as implemented steps to try, rather than a recording of a verified browser run.
+The November 14 walkthrough edits genuine hosted UI screenshots into a 1920×1080 video with local narration, burned-in English captions, and downloadable [VTT](../public/media/facet-demo-20261114.vtt) and [SRT](../public/media/facet-demo-20261114.srt) captions. It is an edited walkthrough, not a continuous screen recording. Documents, issuer and training claims are fictional; signatures, BBS proofs and NEAR testnet receipts are real.
 
-## Wallet, TEE and agent walkthrough
+[Dated capture evidence](../deployments/demo-capture-2026-11-14.json) · [Video fingerprint and scene timings](../deployments/demo-video-2026-11-14.json) · [Private integration results](https://facet-near.vercel.app/near-verification.json)
+
+[Hosted playback checks](../deployments/demo-playback-2026-11-14.json) verify the deployed video's SHA-256, MP4 range delivery, decoded audio, non-silent browser audio samples and 390px layout. All 31 application tests and the frontend build passed for this update.
+
+## What the video demonstrates
+
+1. A real NEP-413 login and existing wallet-to-holder binding through an injected NEAR Connect test wallet. The signing key stays in Node, outside the browser and published artifacts.
+2. An encrypted local document, a self-recorded NFT and a fictional issuer-signed credential. Creating a document record does not authenticate the file or confer legal ownership.
+3. Holder approval of course and completion, while name, score, date and student reference remain hidden. A separate browser imports and verifies the proof without receiving the original or opening a vault.
+4. A real verification receipt, current issuer/expiry/revocation checks, and rejection of a fresh unused proof after a real revocation transaction.
+5. Clearly labeled **agent permission previews**: selected fields, purpose, ten-minute expiry and two executions. This capture creates no agent grant and records no TEE dispatch.
+6. The `/near` page's concrete wallet, contract and OutLayer roles, current partial verification status, contract address and exact worker fingerprint.
+
+The wallet and direct-proof portions use separate fictional holder contexts. The edited sequence does not claim they are one uninterrupted browser session.
+
+## Private execution status
+
+**The complete private browser workflow has not passed.** Separate real testnet executions confirmed sealed copies, approved agent deliveries and owner recovery. Some OutLayer settlements arrive after the NEAR yield expires. Locked-vault external-agent use through live HTTP, full private browser coverage and manual Meteor/Intear login remain unverified. The video keeps these limitations visible.
+
+The optional TEE copy stores the approved document, credential and holder key in persistent project-bound sealed storage. NEAR checks signed approvals, caller and capability restrictions, credential status, expiry, allowance and revocation. Agent recipients receive approved fields and required public credential bindings, without the original document or holder key. The TEE checks signed bindings and scope and delivers browser-prepared BBS presentations; it does not derive new proofs during execution. The example agent uses deterministic checks, with no language model or paid inference. Facet does not independently verify the complete TDX attestation chain.
+
+## Try the implemented private workflow
+
+Use fictional data and a testnet wallet. Treat these as experimental steps to try, not a passed end-to-end walkthrough. Wait for each private receipt to become `ready`; inspect pending or failed receipts before retrying.
 
 1. Create a local vault, save an encrypted backup and issue the fictional training credential.
 2. Open **Agent access**, connect a NEAR testnet wallet, sign in and bind it to the vault.
 3. Approve the original, credential and holder-key TEE copy, then select **Save private TEE copy**.
-4. Leave learner and score private. Choose course and achievement, purpose, expiry and two executions. Approve the permission.
-5. Run the demo agent and inspect approved claims, the NEAR receipt and public private-job receipt.
-6. Export private agent access, lock the vault, and run the external client with the remaining execution:
+4. Choose fields, purpose, expiry and execution allowance. Approve the permission.
+5. Run the demo agent and inspect approved claims, the NEAR verification receipt and public private-job receipt.
+6. Export private agent access, lock the vault, and try the external client with an execution remaining:
 
 ```bash
 npm run agent:use -- --access /path/to/facet-private-agent-access.json
 ```
 
-7. Unlock the holder vault and revoke the grant. Future requests are refused.
-8. On a separate browser, connect the same wallet, approve **Recover copy**, and choose a new password. The saved original and holder key return from the TEE; local history and old capabilities still need the encrypted backup.
+7. Unlock the holder vault and revoke the grant to refuse future requests.
+8. On another browser, connect the bound wallet, approve **Recover copy**, and choose a new password. Wallet recovery restores each saved original and the holder key; local history and old capabilities still need the encrypted backup.
 
-NEAR authorizes each use through signed grants, caller restrictions, current credential status, expiry, usage and revocation. Facet calls OutLayer through the NEAR contract using a published worker hash. Agent recipients independently verify the browser-prepared BBS presentations. The example agent is deterministic; it uses no language model.
+## Rebuild the video from public captures
 
-[Private integration evidence](https://facet-near.vercel.app/near-verification.json) records testnet transactions and OutLayer execution IDs. Wallet browser automation uses an injected NEAR Connect harness with real signatures and transactions; manual Meteor/Intear login is not covered. Facet does not independently verify the complete TDX attestation chain.
+The renderer reads only the public storyboard and captured screenshots. It verifies every source image's SHA-256 before rendering. Python 3, the pinned packages below and the committed Manrope font are sufficient; no wallet, recovery capability or paid service is needed to rebuild the video.
 
-## What was verified
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r scripts/product-demo-requirements.txt
+mkdir -p reports/demo/tts-model
+curl -fL https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.1/kokoro-v1.0.int8.onnx -o reports/demo/tts-model/kokoro-v1.0.int8.onnx
+curl -fL https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.1/voices-v1.0.bin -o reports/demo/tts-model/voices-v1.0.bin
+.venv/bin/python scripts/render-product-demo.py \
+  --storyboard scripts/near-demo-storyboard-20261114.json \
+  --capture deployments/demo-capture-2026-11-14.json \
+  --report deployments/demo-video-2026-11-14.json \
+  --work-dir reports/product-demo-near-20261114 \
+  --model reports/demo/tts-model/kokoro-v1.0.int8.onnx \
+  --voices reports/demo/tts-model/voices-v1.0.bin
+```
 
-The original primary-browser recording shows the local encrypted vault, an unverified self-recorded NFT, a signed fictional training credential, owner-approved BBS disclosure, successful proof verification, replay refusal, the proof lab and vault locking.
+Verify downloaded model hashes before running them:
 
-During the same run, an encrypted backup restored the vault in another browser. That restored holder revoked the credential in a real transaction, and subsequent verification rejected it. Those second-browser actions are recorded in the linked test evidence; they are not part of this primary-browser video.
+| File | SHA-256 |
+| --- | --- |
+| `kokoro-v1.0.int8.onnx` | `ae315a79b623f244700e4afb9246c46a26066782e049ba174bf3ba433970ee9c` |
+| `voices-v1.0.bin` | `bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d` |
 
-Desktop, 390px and 320px layout checks passed after fixing the mobile hero buttons. The workflow checked ciphertext in IndexedDB and that API requests did not contain the vault password, original document bytes or private filename. The issuer and training claims are fictional. Cryptographic proofs and NEAR receipts are real; institution onboarding remains future work.
+Kokoro-82M model weights use Apache-2.0; the `af_heart` voice is rendered locally on CPU. Manrope's SIL Open Font License is included in [the font license](video-tools/OFL-Manrope.txt). Dependencies are pinned in [the renderer requirements](../scripts/product-demo-requirements.txt). Model weights, intermediate WAVs and private fixtures are excluded from Git. The output includes H.264 video, AAC audio, loudness normalization and MP4 fast-start metadata. Speech is paced at 1.12× after synthesis; captions use proportional phrase timing within each narrated scene.
 
-## Reproduce the features
+The capture helper, `scripts/capture-near-demo.ts`, requires privately configured isolated testnet fixtures under ignored `.local/`, including the stable encrypted holder fixture and its password in `.local/private-browser-password`. Preserve an already bound holder identity. The renderer needs none of these fixtures. For ordinary application checks, use `npm test` and `npm run build`; see [development](DEVELOPMENT.md).
 
-Follow the complete workflow in the [README](../README.md). The checked-in browser helpers are `scripts/browser-scenario.ts`. Live workflows require available demo sponsorship or your own isolated testnet configuration. Application tests and frontend builds need no private keys.
+## Historical recording
 
-Live workflows use fictional inputs and real NEAR testnet transactions. [Submission wording](SUBMISSION.md) explains the concrete NEAR roles and current limits.
+The [November 3 captioned recording](https://facet-near.vercel.app/media/facet-demo-20261103.mp4) and its [original test evidence](../deployments/demo-2026-11-03.json) remain available. That older primary-browser video shows the local vault and direct BBS flow. Encrypted-backup recovery and revocation in another browser were verified separately and appear in its evidence, rather than the recording. It does not demonstrate the newer wallet/TEE/agent workflow.

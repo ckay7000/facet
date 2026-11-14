@@ -1,0 +1,355 @@
+{
+  "status": "passed",
+  "project": "Facet",
+  "source": "Actual hosted UI captures, edited into a narrated walkthrough",
+  "fictional_data": true,
+  "private_keys_excluded": true,
+  "hidden_claims_excluded_from_proof": true,
+  "independent_verifier_has_no_vault": true,
+  "revocation_rejected_unused_proof": true,
+  "checked_at": "2026-11-14T16:42:23.472Z",
+  "evidence": [
+    {
+      "name": "self-recorded document",
+      "token_id": "facet_37fd11aa95e63d69972fe5dd9904b81a",
+      "transaction": {
+        "hash": "BBPFDjCC1DsZMx6zAkeH98bd4Ac85119VwsXmTePWuQr",
+        "success": true,
+        "method": "mint_record"
+      }
+    },
+    {
+      "name": "fictional issuer-signed credential",
+      "token_id": "facet_3d27d390f815b57048a4a76df47dfac0",
+      "transaction": {
+        "hash": "GxmShv9uNNo5Sa24ccgevhdebZcWxdUDW79mYha3rwf3",
+        "success": true,
+        "method": "mint_record"
+      }
+    },
+    {
+      "name": "external verification",
+      "transaction": {
+        "hash": "7GmwCbS3gmxZrUXHoAN7by9RvkFN28keX5zjz42hQsof",
+        "success": true,
+        "method": "record_verification"
+      },
+      "proof_hash": "0bf4a7f72d670750c01ec6b77f8c49e9dfc2247e56d098b3a624db91350660e2"
+    },
+    {
+      "name": "live revocation",
+      "transaction": {
+        "hash": "HokWenEFgVXm6EJSdBHBoN9ECVRAsAKWeB4jSxm8DnmZ",
+        "success": true,
+        "method": "revoke_record"
+      }
+    },
+    {
+      "name": "Wallet-fixture fictional credential",
+      "token_id": "facet_7e657fc76f2d1ff0202179ba2066fc64",
+      "transaction": {
+        "hash": "Dvf3GP2DwRMHGBsZTpSGJsN9TFHa36xgMonww1kox1ei",
+        "success": true,
+        "method": "mint_record"
+      }
+    }
+  ],
+  "browser_errors": [],
+  "shots": [
+    {
+      "name": "01-vault",
+      "focus": {
+        "x": 266,
+        "y": 393.046875,
+        "width": 547,
+        "height": 554.78125
+      },
+      "url": "https://facet-near.vercel.app/vault",
+      "captured_at": "2026-11-14T16:41:47.970Z",
+      "file": "docs/demo-captures/2026-11-14/01-vault.jpg",
+      "sha256": "77bcde129a32f59d96a30b02a2b3ded23cab47ef9da371c14de8701c43ec16eb"
+    },
+    {
+      "name": "02-encrypted-original",
+      "focus": {
+        "x": 812.296875,
+        "y": 647.234375,
+        "width": 562.703125,
+        "height": 206
+      },
+      "url": "https://facet-near.vercel.app/vault",
+      "captured_at": "2026-11-14T16:41:48.465Z",
+      "file": "docs/demo-captures/2026-11-14/02-encrypted-original.jpg",
+      "sha256": "22f4022bd66dcf99f35309ea6b4c2877c428c113687f8c4b2dda92567bfe6769"
+    },
+    {
+      "name": "03-self-recorded-nft",
+      "focus": {
+        "x": 787.296875,
+        "y": 333.234375,
+        "width": 612.703125,
+        "height": 667
+      },
+      "url": "https://facet-near.vercel.app/vault",
+      "captured_at": "2026-11-14T16:41:54.515Z",
+      "file": "docs/demo-captures/2026-11-14/03-self-recorded-nft.jpg",
+      "sha256": "6a1cfb9f13d8ce35fad1c5552b03d7e87ccefdba2a28b28289481c52ee4d3f37"
+    },
+    {
+      "name": "04-issued-credential",
+      "focus": {
+        "x": 812.296875,
+        "y": 639.234375,
+        "width": 562.703125,
+        "height": 312.796875
+      },
+      "url": "https://facet-near.vercel.app/vault",
+      "captured_at": "2026-11-14T16:41:59.450Z",
+      "file": "docs/demo-captures/2026-11-14/04-issued-credential.jpg",
+      "sha256": "d883a46fb50c08338be19158aaf5886cb498125bc740a7c6c25703ef7bc100d3"
+    },
+    {
+      "name": "05-request-fields",
+      "focus": {
+        "x": 293,
+        "y": 258.1875,
+        "width": 503,
+        "height": 245
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-14T16:41:59.702Z",
+      "file": "docs/demo-captures/2026-11-14/05-request-fields.jpg",
+      "sha256": "d4e31c58406f808f28092148827ec5f1b96b6475edaca8e268457e9392fbc950"
+    },
+    {
+      "name": "06-disclosure-preview",
+      "focus": {
+        "x": 870,
+        "y": 149.046875,
+        "width": 503,
+        "height": 265
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-14T16:42:00.833Z",
+      "file": "docs/demo-captures/2026-11-14/06-disclosure-preview.jpg",
+      "sha256": "4decfe0d501ed1accc84d66706634a2c87caced31ce8666cd7be3d5fb055d757"
+    },
+    {
+      "name": "07-owner-approval",
+      "focus": {
+        "x": 843,
+        "y": 0.046875,
+        "width": 557,
+        "height": 641.875
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-14T16:42:02.377Z",
+      "file": "docs/demo-captures/2026-11-14/07-owner-approval.jpg",
+      "sha256": "605fdd6fd8e511e14b4d949368ae69f1c7516bff33ec1dc7156028a9525a1b9c"
+    },
+    {
+      "name": "08-external-verifier",
+      "focus": {
+        "x": 843,
+        "y": 390.046875,
+        "width": 557,
+        "height": 370.46875
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-14T16:42:02.994Z",
+      "file": "docs/demo-captures/2026-11-14/08-external-verifier.jpg",
+      "sha256": "2a3dcea1203473fd497cbe48aa77c13884b7dbacbba2667316a2e8b4aa871495"
+    },
+    {
+      "name": "09-verified-claims",
+      "focus": {
+        "x": 292,
+        "y": 686.234375,
+        "width": 1082,
+        "height": 72
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-14T16:42:08.160Z",
+      "file": "docs/demo-captures/2026-11-14/09-verified-claims.jpg",
+      "sha256": "5ffb7cfc0f57f2352f785737fff01040245573cbd6acbcf9ba5862845444c193"
+    },
+    {
+      "name": "10-verification-checks",
+      "focus": {
+        "x": 292,
+        "y": 437.234375,
+        "width": 1082,
+        "height": 225
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-14T16:42:08.270Z",
+      "file": "docs/demo-captures/2026-11-14/10-verification-checks.jpg",
+      "sha256": "18ab88759f27f1ed028054f991ed1c80b8d07ad00640d139ceb2b7b36386b8a6"
+    },
+    {
+      "name": "11-consent-history",
+      "focus": {
+        "x": 266,
+        "y": 317.046875,
+        "width": 1134,
+        "height": 166.296875
+      },
+      "url": "https://facet-near.vercel.app/activity",
+      "captured_at": "2026-11-14T16:42:08.431Z",
+      "file": "docs/demo-captures/2026-11-14/11-consent-history.jpg",
+      "sha256": "76161774260454ebe8acccd287e477df4d4183a656561a6efe82c7cefd6f5acc"
+    },
+    {
+      "name": "12-proof-lab",
+      "focus": {
+        "x": 266,
+        "y": 263.53125,
+        "width": 1134,
+        "height": 736.625
+      },
+      "url": "https://facet-near.vercel.app/lab",
+      "captured_at": "2026-11-14T16:42:10.158Z",
+      "file": "docs/demo-captures/2026-11-14/12-proof-lab.jpg",
+      "sha256": "7c559295271413edf9d1b9c00c230c745f9130fde6f6cf2e08494ad812953f2f"
+    },
+    {
+      "name": "13-revocation-consent",
+      "focus": {
+        "x": 812.296875,
+        "y": 744.03125,
+        "width": 562.703125,
+        "height": 128.296875
+      },
+      "url": "https://facet-near.vercel.app/vault",
+      "captured_at": "2026-11-14T16:42:11.282Z",
+      "file": "docs/demo-captures/2026-11-14/13-revocation-consent.jpg",
+      "sha256": "ecde793a22efe3ac81f319418b4210662f7143d3832d023d4d3da08f1947b16b"
+    },
+    {
+      "name": "14-revoked-proof",
+      "focus": {
+        "x": 292,
+        "y": 752.234375,
+        "width": 1082,
+        "height": 225
+      },
+      "url": "https://facet-near.vercel.app/verify",
+      "captured_at": "2026-11-14T16:42:15.871Z",
+      "file": "docs/demo-captures/2026-11-14/14-revoked-proof.jpg",
+      "sha256": "f95a1ec112813ab394bd8107127abbcdaac48e68c22b77eff72bae2291c6592b"
+    },
+    {
+      "name": "20-product-intro",
+      "focus": {
+        "x": 0,
+        "y": 86,
+        "width": 1440,
+        "height": 779.578125
+      },
+      "url": "https://facet-near.vercel.app/",
+      "captured_at": "2026-11-14T16:42:16.567Z",
+      "file": "docs/demo-captures/2026-11-14/20-product-intro.jpg",
+      "sha256": "eedcb940a40878b58ae010cc13e526334bd4d70bd94c31711c5c5aed8194ba69"
+    },
+    {
+      "name": "21-wallet-identity",
+      "focus": {
+        "x": 266,
+        "y": 520.234375,
+        "width": 1134,
+        "height": 245.421875
+      },
+      "url": "https://facet-near.vercel.app/agents",
+      "captured_at": "2026-11-14T16:42:18.294Z",
+      "file": "docs/demo-captures/2026-11-14/21-wallet-identity.jpg",
+      "sha256": "f94a9c7224d34dcd09ef121729a2ed9d82a7d8098cc73713bd55b8c77e1dad3d"
+    },
+    {
+      "name": "22-agent-fields-preview",
+      "focus": {
+        "x": 828.171875,
+        "y": 402.84375,
+        "width": 542.828125,
+        "height": 239
+      },
+      "url": "https://facet-near.vercel.app/agents",
+      "captured_at": "2026-11-14T16:42:22.719Z",
+      "file": "docs/demo-captures/2026-11-14/22-agent-fields-preview.jpg",
+      "sha256": "db40b2c73ff74c0855eedf0d843115c0e9872db4dfd41aea29a4d068631eb462"
+    },
+    {
+      "name": "23-agent-limits-preview",
+      "focus": {
+        "x": 828.171875,
+        "y": 372.84375,
+        "width": 542.828125,
+        "height": 94
+      },
+      "url": "https://facet-near.vercel.app/agents",
+      "captured_at": "2026-11-14T16:42:22.927Z",
+      "file": "docs/demo-captures/2026-11-14/23-agent-limits-preview.jpg",
+      "sha256": "75f17d3e4582fe283081ab2ab58ecc55418648ba23e8261f97b18a3a092d76da"
+    },
+    {
+      "name": "24-near-roles",
+      "focus": {
+        "x": 266,
+        "y": 366.9375,
+        "width": 1134,
+        "height": 345.1875
+      },
+      "url": "https://facet-near.vercel.app/near",
+      "captured_at": "2026-11-14T16:42:23.112Z",
+      "file": "docs/demo-captures/2026-11-14/24-near-roles.jpg",
+      "sha256": "be9c77470351c3824c8faf346c6c3b668bca3ca18d7d980a2beb9ab1dd5f9f25"
+    },
+    {
+      "name": "25-private-execution-status",
+      "focus": {
+        "x": 266,
+        "y": 712.125,
+        "width": 1134,
+        "height": 272.25
+      },
+      "url": "https://facet-near.vercel.app/near",
+      "captured_at": "2026-11-14T16:42:23.232Z",
+      "file": "docs/demo-captures/2026-11-14/25-private-execution-status.jpg",
+      "sha256": "be9c77470351c3824c8faf346c6c3b668bca3ca18d7d980a2beb9ab1dd5f9f25"
+    },
+    {
+      "name": "26-contract-and-worker",
+      "focus": {
+        "x": 266,
+        "y": 304.375,
+        "width": 1134,
+        "height": 390.4375
+      },
+      "url": "https://facet-near.vercel.app/near",
+      "captured_at": "2026-11-14T16:42:23.365Z",
+      "file": "docs/demo-captures/2026-11-14/26-contract-and-worker.jpg",
+      "sha256": "ece0655a20636c57b7102244015fbf19ce5f4e472d9648f70b176156b96cc5c8"
+    }
+  ],
+  "wallet": {
+    "status": "passed",
+    "method": "Injected NEAR Connect fixture with real NEP-413 signature and live wallet-to-holder binding",
+    "account_id": "wallet.facet-checks-1102.testnet",
+    "signing_keys_excluded": true
+  },
+  "agent_screen": {
+    "status": "preview_only",
+    "fields": [
+      "course",
+      "achievement"
+    ],
+    "minutes": 10,
+    "maximum_executions": 2,
+    "grant_created": false,
+    "tee_dispatch_recorded": false
+  },
+  "private_execution": {
+    "status": "experimental",
+    "evidence": "public/near-verification.json",
+    "note": "Earlier individual TEE operations are verified; the complete private browser workflow remains incomplete."
+  }
+}

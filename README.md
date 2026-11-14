@@ -4,7 +4,11 @@ Facet is a private document and credential vault built on NEAR. Connect a wallet
 
 An application can verify course completion without receiving the learner's name, score or original certificate. NEAR records wallet bindings, credential status, signed permissions and execution receipts. An optional OutLayer TEE copy stores the document, credential and holder key for wallet recovery and scoped agent use.
 
-[Open Facet](https://facet-near.vercel.app) · [Wallet and agent access](https://facet-near.vercel.app/agents) · [Inspect the NEAR integration](https://facet-near.vercel.app/near)
+[Open Facet](https://facet-near.vercel.app) · [Watch the narrated demo](https://facet-near.vercel.app/demo) · [Wallet and agent access](https://facet-near.vercel.app/agents) · [Inspect the NEAR integration](https://facet-near.vercel.app/near)
+
+[![Watch the narrated Facet walkthrough](public/media/facet-demo-20261114-poster.jpg)](https://facet-near.vercel.app/demo)
+
+The November 14 demo uses genuine hosted UI captures: a verified direct credential flow, an injected-wallet signed login, clearly marked agent permission previews, and the published NEAR integration evidence. [Video, captions and reproducible rendering](docs/DEMO.md).
 
 **Verification is partial.** Real testnet executions have confirmed sealed copies, approved agent deliveries and owner recovery. The complete private browser workflow has not passed: some OutLayer workers settle after their NEAR callback expires. Locked-vault external-agent access through live HTTP, manual Meteor/Intear compatibility and the complete hosted private browser flow remain unverified. The [current evidence](https://facet-near.vercel.app/near-verification.json) separates these results.
 
@@ -67,7 +71,7 @@ Local storage works without a wallet. Upload a file to keep it encrypted; select
 
 For issuer-signed credentials, the holder can approve a one-off BBS proof at the verification desk. A recipient imports it without a vault and checks the issuer, holder signature and current NEAR status. Reused requests, edited claims and revoked credentials are refused. The **Proof lab** exercises cryptographic rejection paths.
 
-[Walkthrough and original demo video](docs/DEMO.md) · [Engineering reference](docs/ENGINEERING.md)
+[Walkthrough and narrated demo](docs/DEMO.md) · [Engineering reference](docs/ENGINEERING.md)
 
 ## Inspect the implementation
 
@@ -101,5 +105,11 @@ Facet Test Academy and its claims are fictional. Real issuer onboarding is futur
 OutLayer supplies confidential execution and attestations. Facet does not independently verify the complete TDX attestation chain. Project-bound storage persists across runs; project administrators can publish future versions with access to those keys. Hash pinning identifies the approved version but does not remove administrator trust.
 
 Private execution depends on OutLayer testnet availability. A pending or failed job is not a stored copy or successful disclosure; inspect its NEAR receipt before creating another request. TEE originals are limited to 64 KiB; local files support up to 5 MB. Grants permit one to three executions within five to fifteen minutes. Failed executions consume allowance. Public wallet/holder/token activity remains linkable. Revocation cannot erase retained disclosures or reliably cancel an in-flight delivery. This testnet prototype has no independent security audit.
+
+## Hackathon work and related project
+
+The NEAR wallet, persistent TEE vault and scoped agent integration was built during the eligible October 19–November 14 window. Earlier document-vault and direct-proof functionality is identified as baseline in [the November 3 demo evidence](deployments/demo-2026-11-03.json). [The integration change](https://github.com/NSEVEjk0/facet/commit/d81bc77) and the current dated capture/verification reports identify the new work. The project uses React/Vite, NEAR Connect, OutLayer, BBS libraries and AI-assisted development; dependency and local narration licenses apply separately.
+
+The author’s other intended independent entry is [Sealwork](https://github.com/NSEVEjk0/sealwork), private bank-receipt reconciliation with reviewed allocations and checked exports. Facet provides holder-controlled credential disclosure and agent permissions; Sealwork processes financial records through a separate contract and workflow. The original and upgraded Sealwork builds are versions of one project.
 
 [MIT license](LICENSE). Dependency licenses apply to their respective code.

@@ -1,0 +1,159 @@
+{
+  "project": "Facet",
+  "video": "/media/facet-demo-20261114.mp4",
+  "duration_seconds": 179.15,
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "video_codec": "H264",
+  "audio_codec": "AAC",
+  "faststart": true,
+  "narrated": true,
+  "burned_in_captions": true,
+  "caption_files": [
+    "vtt",
+    "srt"
+  ],
+  "caption_timing": "Proportional phrase timing within each narrated scene",
+  "source": "Edited real hosted screenshots; not an uninterrupted screen recording",
+  "capture_evidence": "deployments/demo-capture-2026-11-14.json",
+  "storyboard": "scripts/near-demo-storyboard-20261114.json",
+  "fictional_data": true,
+  "voice": {
+    "model": "Kokoro-82M v1.0 int8",
+    "voice": "af_heart",
+    "speed": 1.07,
+    "playback_rate": 1.12,
+    "pause_seconds": 0.55,
+    "license": "Apache-2.0",
+    "asset_source": "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.1/",
+    "pronunciations": {
+      "BBS": "B. B. S.",
+      "NFT": "N. F. T.",
+      "NEAR": "Near",
+      "OutLayer": "Out Layer",
+      "TEE": "T. E. E."
+    }
+  },
+  "model_sha256": "ae315a79b623f244700e4afb9246c46a26066782e049ba174bf3ba433970ee9c",
+  "voices_sha256": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d",
+  "shots": [
+    "20-product-intro",
+    "21-wallet-identity",
+    "02-encrypted-original",
+    "03-self-recorded-nft",
+    "04-issued-credential",
+    "06-disclosure-preview",
+    "08-external-verifier",
+    "09-verified-claims",
+    "10-verification-checks",
+    "14-revoked-proof",
+    "22-agent-fields-preview",
+    "23-agent-limits-preview",
+    "24-near-roles",
+    "25-private-execution-status",
+    "26-contract-and-worker"
+  ],
+  "scene_timing": [
+    {
+      "start": 0,
+      "voice_end": 9.997833333333332,
+      "end": 10.547833333333333,
+      "shot": "20-product-intro"
+    },
+    {
+      "start": 10.547833333333333,
+      "voice_end": 21.824624999999997,
+      "end": 22.374624999999998,
+      "shot": "21-wallet-identity"
+    },
+    {
+      "start": 22.374624999999998,
+      "voice_end": 32.35429166666667,
+      "end": 32.904291666666666,
+      "shot": "02-encrypted-original"
+    },
+    {
+      "start": 32.904291666666666,
+      "voice_end": 44.278375,
+      "end": 44.828374999999994,
+      "shot": "03-self-recorded-nft"
+    },
+    {
+      "start": 44.828374999999994,
+      "voice_end": 54.92083333333333,
+      "end": 55.470833333333324,
+      "shot": "04-issued-credential"
+    },
+    {
+      "start": 55.470833333333324,
+      "voice_end": 66.91937499999999,
+      "end": 67.46937499999999,
+      "shot": "06-disclosure-preview"
+    },
+    {
+      "start": 67.46937499999999,
+      "voice_end": 76.70670833333332,
+      "end": 77.25670833333332,
+      "shot": "08-external-verifier"
+    },
+    {
+      "start": 77.25670833333332,
+      "voice_end": 90.444375,
+      "end": 90.99437499999999,
+      "shot": "09-verified-claims"
+    },
+    {
+      "start": 90.99437499999999,
+      "voice_end": 102.00791666666666,
+      "end": 102.55791666666666,
+      "shot": "10-verification-checks"
+    },
+    {
+      "start": 102.55791666666666,
+      "voice_end": 112.151125,
+      "end": 112.70112499999999,
+      "shot": "14-revoked-proof"
+    },
+    {
+      "start": 112.70112499999999,
+      "voice_end": 124.36049999999999,
+      "end": 124.91049999999998,
+      "shot": "22-agent-fields-preview"
+    },
+    {
+      "start": 124.91049999999998,
+      "voice_end": 136.91120833333332,
+      "end": 137.46120833333333,
+      "shot": "23-agent-limits-preview"
+    },
+    {
+      "start": 137.46120833333333,
+      "voice_end": 150.73329166666667,
+      "end": 151.28329166666668,
+      "shot": "24-near-roles"
+    },
+    {
+      "start": 151.28329166666668,
+      "voice_end": 165.6906666666667,
+      "end": 166.2406666666667,
+      "shot": "25-private-execution-status"
+    },
+    {
+      "start": 166.2406666666667,
+      "voice_end": 178.5996666666667,
+      "end": 179.14966666666672,
+      "shot": "26-contract-and-worker"
+    }
+  ],
+  "limitations": [
+    "Edited genuine hosted screenshots, not an uninterrupted screen recording.",
+    "Injected NEAR Connect fixture: real NEP-413 signature and live wallet binding; manual wallet compatibility not demonstrated.",
+    "Agent permission screens are previews. This capture creates no grant and records no TEE dispatch.",
+    "Individual TEE operations have separate live evidence; complete private browser and locked-vault external HTTP flows remain unverified.",
+    "Fictional documents and issuer; real cryptography and NEAR testnet transactions.",
+    "The TEE delivers browser-prepared presentations. It does not derive fresh BBS proofs, and the demo agent uses no language model."
+  ],
+  "bytes": 14261758,
+  "sha256": "4b2c90a65ec0399e01d12d33a5ec2b58807508e5e935e94ea5197801ba6ab04a"
+}

@@ -1,0 +1,151 @@
+1
+00:00:00,000 --> 00:00:04,999
+A hiring application needs proof of training, not your entire certificate. Facet keeps digital
+
+2
+00:00:04,999 --> 00:00:09,998
+documents private and lets you approve exactly which signed facts an application can see.
+
+3
+00:00:10,548 --> 00:00:16,562
+The wallet identifies the holder through a signed NEAR login. This capture uses an injected test
+
+4
+00:00:16,562 --> 00:00:21,449
+wallet with a real signature and live holder binding. Manual wallet compatibility remains
+
+5
+00:00:21,449 --> 00:00:21,825
+unverified.
+
+6
+00:00:22,375 --> 00:00:28,225
+I upload fictional training notes. The original is encrypted in my local vault. My password stays on
+
+7
+00:00:28,225 --> 00:00:32,354
+this device, and an encrypted backup preserves my documents and holder identity.
+
+8
+00:00:32,904 --> 00:00:39,274
+A document NFT registers a salted fingerprint on NEAR. This self-recorded upload remains unverified.
+
+9
+00:00:39,274 --> 00:00:44,278
+Registration alone does not authenticate a document or confer legal ownership.
+
+10
+00:00:44,828 --> 00:00:51,427
+The demo academy now signs a training credential. Its claims carry a real BBS signature and a
+
+11
+00:00:51,427 --> 00:00:54,921
+holder-bound NEAR record. The academy and qualification are fictional.
+
+12
+00:00:55,471 --> 00:01:00,641
+The application requests course and completion. Before approving, I see those exact fields. Name,
+
+13
+00:01:00,641 --> 00:01:06,550
+score, date and student reference stay hidden. The request also binds its purpose and a single-use
+
+14
+00:01:06,550 --> 00:01:06,919
+nonce.
+
+15
+00:01:07,469 --> 00:01:13,285
+I approve and export a selective proof. A separate browser imports it without my vault or original
+
+16
+00:01:13,285 --> 00:01:16,707
+document. The exported package excludes the hidden name and score.
+
+17
+00:01:17,257 --> 00:01:22,438
+Verification succeeds. The application sees Data Privacy Foundations and Completed, alongside
+
+18
+00:01:22,438 --> 00:01:28,560
+required public credential bindings. A real testnet transaction records the verification receipt and
+
+19
+00:01:28,560 --> 00:01:30,444
+consumes the request nonce.
+
+20
+00:01:30,994 --> 00:01:36,705
+NEAR anchors issuer keys, expiry, revocation and nonce use. Signature and disclosure checks run
+
+21
+00:01:36,705 --> 00:01:42,008
+outside the contract. This gives applications a shared source of current credential status.
+
+22
+00:01:42,558 --> 00:01:48,830
+I prepare a fresh unused proof, then revoke the credential on NEAR. That proof is now rejected
+
+23
+00:01:48,830 --> 00:01:52,151
+because of revocation. Revocation cannot erase facts already shared.
+
+24
+00:01:52,701 --> 00:01:57,438
+For agents, this permission preview selects only course and completion. The planned delivery
+
+25
+00:01:57,438 --> 00:02:02,539
+contains an approved presentation, keeping the original document and holder key private. This screen
+
+26
+00:02:02,539 --> 00:02:04,360
+does not create a grant.
+
+27
+00:02:04,910 --> 00:02:10,511
+The preview limits access to ten minutes and two executions. NEAR enforces signed permissions,
+
+28
+00:02:10,511 --> 00:02:16,111
+usage, expiry and revocation. An agent can consume an existing capability without receiving the
+
+29
+00:02:16,111 --> 00:02:16,911
+vault password.
+
+30
+00:02:17,461 --> 00:02:23,883
+An optional OutLayer TEE copy stores the approved document, credential and holder key in sealed
+
+31
+00:02:23,883 --> 00:02:29,021
+storage. NEAR authorizes private execution and wallet recovery. Plaintext documents are excluded
+
+32
+00:02:29,021 --> 00:02:30,733
+from public chain records.
+
+33
+00:02:31,283 --> 00:02:37,216
+Separate live tests passed TEE storage, agent delivery and recovery. The complete private browser
+
+34
+00:02:37,216 --> 00:02:42,301
+workflow remains incomplete because some callbacks expire before settlement. This walkthrough shows
+
+35
+00:02:42,301 --> 00:02:45,691
+agent previews, not a completed private agent run.
+
+36
+00:02:46,241 --> 00:02:51,423
+The published contract and worker fingerprints make the integration inspectable. The TEE delivers
+
+37
+00:02:51,423 --> 00:02:57,005
+browser-prepared proofs, and the demo agent uses deterministic checks. Try Facet and review the
+
+38
+00:02:57,005 --> 00:02:58,600
+public code and evidence.

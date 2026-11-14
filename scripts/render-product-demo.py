@@ -15,10 +15,14 @@ parser=argparse.ArgumentParser()
 parser.add_argument('--model',type=Path,default=ROOT/'reports/demo/tts-model/kokoro-v1.0.onnx')
 parser.add_argument('--voices',type=Path,default=ROOT/'reports/demo/tts-model/voices-v1.0.bin')
 parser.add_argument('--mode',choices=['all','narrate','render'],default='all')
+parser.add_argument('--storyboard',type=Path,default=ROOT/'scripts/product-demo-storyboard.json')
+parser.add_argument('--capture',type=Path,default=ROOT/'deployments/demo-capture.json')
+parser.add_argument('--report',type=Path,default=ROOT/'deployments/demo-video.json')
+parser.add_argument('--work-dir',type=Path,default=ROOT/'reports/product-demo')
 args=parser.parse_args()
-story=json.loads((ROOT/'scripts/product-demo-storyboard.json').read_text())
+story=json.loads(args.storyboard.read_text())
 scenes=story['scenes']; settings=story['narration']; base=story['base']; theme=story['theme']
-WORK=ROOT/'reports/product-demo';WORK.mkdir(parents=True,exist_ok=True)
+WORK=args.work_dir;WORK.mkdir(parents=True,exist_ok=True)
 OUT=ROOT/'public/media';OUT.mkdir(parents=True,exist_ok=True)
 FFMPEG=imageio_ffmpeg.get_ffmpeg_exe(); W,H,FPS=1920,1080,24
 FONT=ROOT/'docs/video-tools/Manrope.ttf'
@@ -55,12 +59,19 @@ if args.mode in ['all','narrate']:
  opt=ort.SessionOptions();opt.intra_op_num_threads=2;opt.inter_op_num_threads=1
  session=ort.InferenceSession(str(args.model),sess_options=opt,providers=['CPUExecutionProvider'])
  speaker=Kokoro.from_session(session,str(args.voices))
+ class FloatSpeedSession:
+  # The int8 export expects float32, including when speed is an integer.
+  def get_inputs(self):return session.get_inputs()
+  def run(self,outputs,inputs):
+   inputs=dict(inputs);inputs['speed']=np.array([settings['speed']],dtype=np.float32)
+   return session.run(outputs,inputs)
+ speaker.sess=FloatSpeedSession()
  for i,scene in enumerate(scenes):
   spoken=scene['narration']
   for name,pron in sorted(settings['pronunciations'].items(),key=lambda x:-len(x[0])):
    spoken=re.sub(r'\b'+re.escape(name)+r'\b',pron,spoken)
   samples,rate=speaker.create(spoken,voice=settings['voice'],speed=settings['speed'],lang='en-us')
-  assert np.isfinite(samples).all() and len(samples)>rate
+  assert np.isfinite(samples).all() and len(samples)>rate and np.max(np.abs(samples))>.001
   with wave.open(str(WORK/f'scene-{i}.wav'),'wb') as f:
    f.setnchannels(1);f.setsampwidth(2);f.setframerate(rate);f.writeframes((np.clip(samples,-.999,.999)*32767).astype(np.int16).tobytes())
   print(f'Narrated {i+1}/{len(scenes)}: {len(samples)/rate:.1f}s',flush=True)
@@ -68,7 +79,12 @@ if args.mode in ['all','narrate']:
 
 samples=[];timings=[];cues=[];now=0
 for i,scene in enumerate(scenes):
- with wave.open(str(WORK/f'scene-{i}.wav'),'rb') as f:
+ source=WORK/f'scene-{i}.wav'
+ if settings.get('playback_rate',1)!=1:
+  paced=WORK/f'scene-{i}-paced.wav'
+  subprocess.run([FFMPEG,'-y','-loglevel','error','-i',str(source),'-af',f'atempo={settings["playback_rate"]}',str(paced)],check=True)
+  source=paced
+ with wave.open(str(source),'rb') as f:
   rate=f.getframerate();assert f.getnchannels()==1
   raw=np.frombuffer(f.readframes(f.getnframes()),dtype=np.int16)
  start=now;voice_end=now+len(raw)/rate;now=voice_end+settings['pause_seconds']
@@ -88,8 +104,11 @@ with wave.open(str(WORK/'narration.wav'),'wb') as f:
 subprocess.run([FFMPEG,'-y','-loglevel','error','-i',str(WORK/'narration.wav'),'-af','loudnorm=I=-16:TP=-1.5:LRA=11','-ar','48000',str(WORK/'normalized.wav')],check=True)
 assert 80<now<190,f'Unexpected video duration {now}'
 
-meta=json.loads((ROOT/'deployments/demo-capture.json').read_text());assert meta['status']=='passed'
+meta=json.loads(args.capture.read_text());assert meta['status']=='passed'
 shots={s['name']:s for s in meta['shots']}
+for scene in scenes:
+ shot=shots[scene['shot']]
+ assert hashlib.sha256((ROOT/shot['file']).read_bytes()).hexdigest()==shot['sha256'],f'Changed capture: {scene["shot"]}'
 IMAGES={s['shot']:Image.open(ROOT/shots[s['shot']]['file']).convert('RGB') for s in scenes}
 
 # Crop toward a real measured UI element. Only pan/scale the actual screenshot.
@@ -105,15 +124,17 @@ def cropbox(shot,zoom):
 def frame(index,elapsed,cue=None):
  scene=scenes[index];im=Image.new('RGB',(W,H),theme['background']);d=ImageDraw.Draw(im)
  d.text((48,28),story['name'].lower()+'.',font=ft(38,True),fill=theme['accent'])
- d.text((270,40),'REAL NEAR TESTNET WALKTHROUGH',font=ft(18,True),fill=theme['ink'])
+ d.text((270,40),scene.get('banner',story.get('banner','REAL NEAR TESTNET WALKTHROUGH')),font=ft(18,True),fill=theme['ink'])
  d.text((1450,40),f'STEP {index+1:02} / {len(scenes):02}',font=ft(18,True),fill=theme['ink'])
  d.line((48,98,1872,98),fill=theme['soft'],width=2)
  y=drawtext(d,(48,153),scene['title'],42,theme['ink'],330,True,12)
  y+=36;d.rounded_rectangle((48,y,378,y+160),radius=15,fill=theme['soft'])
  drawtext(d,(70,y+22),scene['result'],26,theme['accent'],286,True)
+ if scene.get('badge'):
+  drawtext(d,(48,602),scene['badge'],22,scene.get('badge_color',theme['accent']),330,True,8)
  drawtext(d,(48,685),'Fictional sample data\nGenuine hosted UI captures'.replace('\n',' · '),20,theme['ink'],322,False,10)
  drawtext(d,(48,786),'Edited walkthrough. Waiting time is omitted.',18,theme['ink'],315)
- drawtext(d,(48,873),'facet-near.vercel.app' if story['name']=='Facet' else 'sealwork.vercel.app',18,theme['accent'],340,True)
+ drawtext(d,(48,873),story.get('site','facet-near.vercel.app' if story['name']=='Facet' else 'sealwork.vercel.app'),18,theme['accent'],340,True)
  zoom=1+0.045*min(1,elapsed/7)
  ui=IMAGES[scene['shot']].crop(cropbox(scene['shot'],zoom)).resize((1404,812),Image.Resampling.LANCZOS)
  d.rounded_rectangle((421,123,1878,951),radius=13,fill='#cbd1da')
@@ -138,12 +159,12 @@ try:
   encoder.stdin.write(frame(index,t-timings[index]['start'],cue).tobytes())
  encoder.stdin.close();assert encoder.wait()==0
 except BaseException:encoder.kill();raise
-poster_index=4 if story['name']=='Facet' else 3
+poster_index=story.get('poster_scene',4 if story['name']=='Facet' else 3)
 frame(poster_index,3,scenes[poster_index]['narration'].split('.')[0]+'.').save(OUT/(base+'-poster.jpg'),quality=92)
 vtt=['WEBVTT\n'];srt=[]
 for i,(a,b,c) in enumerate(cues):
  vtt.append(f'{stamp(a)} --> {stamp(b)}\n{c}\n');srt.append(f'{i+1}\n{stamp(a,",")} --> {stamp(b,",")}\n{c}\n')
 (OUT/(base+'.vtt')).write_text('\n'.join(vtt));(OUT/(base+'.srt')).write_text('\n'.join(srt))
-report={'project':story['name'],'duration_seconds':round(now,2),'width':W,'height':H,'fps':FPS,'video_codec':'H264','audio_codec':'AAC','faststart':True,'narrated':True,'burned_in_captions':True,'caption_files':['vtt','srt'],'caption_timing':'Proportional phrase timing within each narrated scene','source':'Edited real hosted screenshots; not an uninterrupted screen recording','capture_evidence':'deployments/demo-capture.json','fictional_data':True,'voice':settings,'shots':[s['shot'] for s in scenes],'scene_timing':timings,'bytes':(OUT/(base+'.mp4')).stat().st_size,'sha256':hashlib.sha256((OUT/(base+'.mp4')).read_bytes()).hexdigest()}
-(ROOT/'deployments/demo-video.json').write_text(json.dumps(report,indent=2)+'\n')
+report={'project':story['name'],'video':f'/media/{base}.mp4','duration_seconds':round(now,2),'width':W,'height':H,'fps':FPS,'video_codec':'H264','audio_codec':'AAC','faststart':True,'narrated':True,'burned_in_captions':True,'caption_files':['vtt','srt'],'caption_timing':'Proportional phrase timing within each narrated scene','source':'Edited real hosted screenshots; not an uninterrupted screen recording','capture_evidence':str(args.capture.resolve().relative_to(ROOT)),'storyboard':str(args.storyboard.resolve().relative_to(ROOT)),'fictional_data':True,'voice':settings,'model_sha256':hashlib.sha256(args.model.read_bytes()).hexdigest(),'voices_sha256':hashlib.sha256(args.voices.read_bytes()).hexdigest(),'shots':[s['shot'] for s in scenes],'scene_timing':timings,'limitations':story.get('limitations',[]),'bytes':(OUT/(base+'.mp4')).stat().st_size,'sha256':hashlib.sha256((OUT/(base+'.mp4')).read_bytes()).hexdigest()}
+args.report.write_text(json.dumps(report,indent=2)+'\n')
 print(f'Completed {story["name"]}: {now:.1f}s, {report["bytes"]} bytes',flush=True)

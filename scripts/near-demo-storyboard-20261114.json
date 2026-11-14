@@ -1,0 +1,128 @@
+{
+  "name": "Facet",
+  "base": "facet-demo-20261114",
+  "site": "facet-near.vercel.app",
+  "banner": "NEAR TESTNET · NARRATED UI WALKTHROUGH",
+  "poster_scene": 5,
+  "theme": { "background": "#f3f4fb", "ink": "#19243b", "accent": "#304ffe", "soft": "#e9e8fc" },
+  "scenes": [
+    {
+      "shot": "20-product-intro",
+      "title": "Your documents. Your rules.",
+      "result": "Prove a fact. Keep the file private.",
+      "narration": "A hiring application needs proof of training, not your entire certificate. Facet keeps digital documents private and lets you approve exactly which signed facts an application can see."
+    },
+    {
+      "shot": "21-wallet-identity",
+      "title": "Connect your NEAR wallet",
+      "result": "Signed login and holder binding verified",
+      "banner": "NEAR TESTNET · WALLET TEST FIXTURE",
+      "badge": "WALLET FIXTURE\nReal signed login",
+      "narration": "The wallet identifies the holder through a signed NEAR login. This capture uses an injected test wallet with a real signature and live holder binding. Manual wallet compatibility remains unverified."
+    },
+    {
+      "shot": "02-encrypted-original",
+      "title": "Keep a digital copy",
+      "result": "Upload → encrypted local vault",
+      "narration": "I upload fictional training notes. The original is encrypted in my local vault. My password stays on this device, and an encrypted backup preserves my documents and holder identity."
+    },
+    {
+      "shot": "03-self-recorded-nft",
+      "title": "A record with clear limits",
+      "result": "Fingerprint → self-recorded NFT",
+      "narration": "A document NFT registers a salted fingerprint on NEAR. This self-recorded upload remains unverified. Registration alone does not authenticate a document or confer legal ownership."
+    },
+    {
+      "shot": "04-issued-credential",
+      "title": "Facts signed by an issuer",
+      "result": "Fictional issuer. Real BBS signature.",
+      "narration": "The demo academy now signs a training credential. Its claims carry a real BBS signature and a holder-bound NEAR record. The academy and qualification are fictional."
+    },
+    {
+      "shot": "06-disclosure-preview",
+      "title": "Approve just enough",
+      "result": "Share course and completion only",
+      "narration": "The application requests course and completion. Before approving, I see those exact fields. Name, score, date and student reference stay hidden. The request also binds its purpose and a single-use nonce."
+    },
+    {
+      "shot": "08-external-verifier",
+      "title": "Verify without the original",
+      "result": "Separate browser → selective proof",
+      "narration": "I approve and export a selective proof. A separate browser imports it without my vault or original document. The exported package excludes the hidden name and score."
+    },
+    {
+      "shot": "09-verified-claims",
+      "title": "A useful verified answer",
+      "result": "Completed → real NEAR receipt",
+      "narration": "Verification succeeds. The application sees Data Privacy Foundations and Completed, alongside required public credential bindings. A real testnet transaction records the verification receipt and consumes the request nonce."
+    },
+    {
+      "shot": "10-verification-checks",
+      "title": "Shared current status",
+      "result": "Issuer, expiry, revocation and nonce",
+      "narration": "NEAR anchors issuer keys, expiry, revocation and nonce use. Signature and disclosure checks run outside the contract. This gives applications a shared source of current credential status."
+    },
+    {
+      "shot": "14-revoked-proof",
+      "title": "Stop future verification",
+      "result": "Revoked credential → fresh proof refused",
+      "narration": "I prepare a fresh unused proof, then revoke the credential on NEAR. That proof is now rejected because of revocation. Revocation cannot erase facts already shared."
+    },
+    {
+      "shot": "22-agent-fields-preview",
+      "title": "Let an agent prove just enough",
+      "result": "Preview the permitted facts",
+      "banner": "NEAR TESTNET · AGENT PERMISSION PREVIEW",
+      "badge": "PREVIEW ONLY\nNo grant created here",
+      "badge_color": "#985500",
+      "narration": "For agents, this permission preview selects only course and completion. The planned delivery contains an approved presentation, keeping the original document and holder key private. This screen does not create a grant."
+    },
+    {
+      "shot": "23-agent-limits-preview",
+      "title": "Set the limits yourself",
+      "result": "10 minutes. Two executions.",
+      "banner": "NEAR TESTNET · AGENT PERMISSION PREVIEW",
+      "badge": "PREVIEW ONLY\nNo TEE dispatch recorded",
+      "badge_color": "#985500",
+      "narration": "The preview limits access to ten minutes and two executions. NEAR enforces signed permissions, usage, expiry and revocation. An agent can consume an existing capability without receiving the vault password."
+    },
+    {
+      "shot": "24-near-roles",
+      "title": "A private home for credentials",
+      "result": "NEAR authorization → OutLayer TEE",
+      "narration": "An optional OutLayer TEE copy stores the approved document, credential and holder key in sealed storage. NEAR authorizes private execution and wallet recovery. Plaintext documents are excluded from public chain records."
+    },
+    {
+      "shot": "25-private-execution-status",
+      "title": "Show what has actually passed",
+      "result": "Individual TEE checks passed; browser run incomplete",
+      "badge": "PARTIAL VERIFICATION",
+      "badge_color": "#985500",
+      "narration": "Separate live tests passed TEE storage, agent delivery and recovery. The complete private browser workflow remains incomplete because some callbacks expire before settlement. This walkthrough shows agent previews, not a completed private agent run."
+    },
+    {
+      "shot": "26-contract-and-worker",
+      "title": "Inspect the NEAR integration",
+      "result": "Public contract, worker hash and evidence",
+      "narration": "The published contract and worker fingerprints make the integration inspectable. The TEE delivers browser-prepared proofs, and the demo agent uses deterministic checks. Try Facet and review the public code and evidence."
+    }
+  ],
+  "narration": {
+    "model": "Kokoro-82M v1.0 int8",
+    "voice": "af_heart",
+    "speed": 1.07,
+    "playback_rate": 1.12,
+    "pause_seconds": 0.55,
+    "license": "Apache-2.0",
+    "asset_source": "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.1/",
+    "pronunciations": { "BBS": "B. B. S.", "NFT": "N. F. T.", "NEAR": "Near", "OutLayer": "Out Layer", "TEE": "T. E. E." }
+  },
+  "limitations": [
+    "Edited genuine hosted screenshots, not an uninterrupted screen recording.",
+    "Injected NEAR Connect fixture: real NEP-413 signature and live wallet binding; manual wallet compatibility not demonstrated.",
+    "Agent permission screens are previews. This capture creates no grant and records no TEE dispatch.",
+    "Individual TEE operations have separate live evidence; complete private browser and locked-vault external HTTP flows remain unverified.",
+    "Fictional documents and issuer; real cryptography and NEAR testnet transactions.",
+    "The TEE delivers browser-prepared presentations. It does not derive fresh BBS proofs, and the demo agent uses no language model."
+  ]
+}

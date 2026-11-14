@@ -1,0 +1,31 @@
+{
+  "project": "Facet",
+  "status": "passed",
+  "checked_at": "2026-11-14T17:10:11.922Z",
+  "page": "https://facet-near.vercel.app/demo",
+  "range": {
+    "status": 206,
+    "content_type": "video/mp4",
+    "bytes": 1024
+  },
+  "sha256": "4b2c90a65ec0399e01d12d33a5ec2b58807508e5e935e94ea5197801ba6ab04a",
+  "playback": {
+    "source": "https://facet-near.vercel.app/media/facet-demo-20261114.mp4",
+    "duration": 179.149,
+    "current_time": 2.339505,
+    "paused": false,
+    "muted": false,
+    "volume": 1,
+    "width": 1920,
+    "height": 1080,
+    "error": null,
+    "audio_decoded_bytes": 53544,
+    "captions_ready": 2
+  },
+  "audio": {
+    "peak": 0.7842502593994141,
+    "stream_audio_tracks": 1
+  },
+  "mobile_width": 390,
+  "browser_errors": []
+}
