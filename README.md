@@ -87,7 +87,7 @@ For issuer-signed credentials, the holder can approve a one-off BBS proof at the
 Use Node 24 and npm. Unit tests and the frontend build require no keys.
 
 ```bash
-git clone https://github.com/NSEVEjk0/facet.git
+git clone https://github.com/ckay7000/facet.git
 cd facet
 npm ci
 npm test
@@ -108,8 +108,10 @@ Private execution depends on OutLayer testnet availability. A pending or failed 
 
 ## Hackathon work and related project
 
-The NEAR wallet, persistent TEE vault and scoped agent integration was built during the eligible October 19–November 14 window. Earlier document-vault and direct-proof functionality is identified as baseline in [the November 3 demo evidence](deployments/demo-2026-11-03.json). [The integration change](https://github.com/NSEVEjk0/facet/commit/d81bc77) and the current dated capture/verification reports identify the new work. The project uses React/Vite, NEAR Connect, OutLayer, BBS libraries and AI-assisted development; dependency and local narration licenses apply separately.
+The current public repository is `ckay7000/facet`. The previous account’s copy is preserved privately; commit history, branches, tags and demo artifacts are retained here.
 
-The author’s other intended independent entry is [Sealwork](https://github.com/NSEVEjk0/sealwork), private bank-receipt reconciliation with reviewed allocations and checked exports. Facet provides holder-controlled credential disclosure and agent permissions; Sealwork processes financial records through a separate contract and workflow. The original and upgraded Sealwork builds are versions of one project.
+The NEAR wallet, persistent TEE vault and scoped agent integration was built during the eligible October 19–November 14 window. Earlier document-vault and direct-proof functionality is identified as baseline in [the November 3 demo evidence](deployments/demo-2026-11-03.json). [The integration change](https://github.com/ckay7000/facet/commit/d81bc77) and the current dated capture/verification reports identify the new work. The project uses React/Vite, NEAR Connect, OutLayer, BBS libraries and AI-assisted development; dependency and local narration licenses apply separately.
+
+The author’s other intended independent entry is [Sealwork](https://github.com/ckay7000/sealwork), private bank-receipt reconciliation with reviewed allocations and checked exports. Facet provides holder-controlled credential disclosure and agent permissions; Sealwork processes financial records through a separate contract and workflow. The original and upgraded Sealwork builds are versions of one project.
 
 [MIT license](LICENSE). Dependency licenses apply to their respective code.
